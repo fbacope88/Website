@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Creative Web Studio Experts"
+version = "1.0.0"
+id = "artifacts/creative-web-studio"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23561
+
+[services.development]
+run = "pnpm --filter @workspace/creative-web-studio run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/creative-web-studio", "run", "build" ]
+publicDir = "artifacts/creative-web-studio/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23561"
+BASE_PATH = "/"
