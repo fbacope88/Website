@@ -23,3 +23,4 @@ timeoutMs = 20000
 
 [userenv.shared]
 MAKE_WEBHOOK_URL = "https://hook.eu2.make.com/hn6idmtz992pb6v96n6oa516edczrew6"
+EMAIL_USER = "creativewebstudioexpert@gmail.com"
