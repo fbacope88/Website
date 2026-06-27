@@ -727,15 +727,6 @@ function Contact() {
             </p>
             
             <div className="space-y-6">
-              <div className="flex items-center gap-5">
-                <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center border border-white/10">
-                  <MessageSquare className="w-6 h-6 text-[#0066FF]" />
-                </div>
-                <div>
-                  <p className="text-sm text-gray-400 font-medium">Email Us Directly</p>
-                  <p className="text-xl font-bold text-white">hello@creativewebstudio.com</p>
-                </div>
-              </div>
               <div className="flex items-center gap-5 mt-8 p-6 bg-white/5 rounded-2xl border border-white/10">
                 <div className="w-3 h-3 bg-[#0066FF] rounded-full animate-pulse" />
                 <p className="text-white font-medium">Currently accepting new projects</p>
