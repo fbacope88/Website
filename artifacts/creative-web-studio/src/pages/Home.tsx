@@ -464,7 +464,7 @@ function Portfolio() {
             { href: "https://lnacarsales.co.uk", domain: "lnacarsales.co.uk", title: "LNA Car Sales", category: "Automotive Sales & Dealership", badge: "Live" },
             { href: "https://freshbuysltd.co.uk", domain: "freshbuysltd.co.uk", title: "Fresh Buys Ltd", category: "Retail & Online Shopping", badge: "Live" },
             { href: "https://www.prioritypings.co.uk", domain: "prioritypings.co.uk", title: "Priority Pings", category: "Digital Services & Notifications", badge: "Live" },
-            { href: "https://myfreshbuys.co.uk", domain: "myfreshbuys.co.uk", title: "My Fresh Buys", category: "E-Commerce & Online Retail", badge: "Live" },
+            { href: "https://myfreshbuys.co.uk", domain: "myfreshbuys.co.uk", title: "Amazon FBA", category: "E-Commerce & Online Retail", badge: "Live" },
           ].map((site, i) => (
             <motion.a
               key={site.domain}
