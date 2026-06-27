@@ -517,7 +517,7 @@ function Pricing() {
           <p className="text-lg text-gray-600">High-end design doesn't have to break the bank. No hidden fees, no surprises.</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
           {/* Starter Plan */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -528,48 +528,51 @@ function Pricing() {
             data-testid="card-pricing-starter"
           >
             <h3 className="text-2xl font-bold mb-2 text-[#1a1a2e]">Starter</h3>
-            <p className="text-gray-500 mb-6 h-12">Perfect for new businesses needing a professional web presence.</p>
-            <div className="text-5xl font-extrabold text-[#0066FF] mb-8">£100<span className="text-lg text-gray-500 font-medium">/site</span></div>
+            <p className="text-gray-500 mb-6 h-12">A single polished landing page to get your business online fast.</p>
+            <div className="text-5xl font-extrabold text-[#0066FF] mb-8">£75<span className="text-lg text-gray-500 font-medium">/site</span></div>
             <ul className="space-y-4 mb-10 text-gray-700">
               <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> 1 Page Landing Site</li>
-              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Mobile Responsive</li>
+              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Mobile Responsive Design</li>
               <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Fast Delivery (48h)</li>
-              <li className="flex items-center gap-3 text-gray-400"><X className="w-5 h-5" /> CMS Integration</li>
-              <li className="flex items-center gap-3 text-gray-400"><X className="w-5 h-5" /> E-Commerce</li>
+              <li className="flex items-center gap-3 text-gray-400"><X className="w-5 h-5" /> Multiple Pages</li>
+              <li className="flex items-center gap-3 text-gray-400"><X className="w-5 h-5" /> Contact Form</li>
+              <li className="flex items-center gap-3 text-gray-400"><X className="w-5 h-5" /> SEO Optimisation</li>
             </ul>
-            <Button className="w-full bg-white text-[#1a1a2e] border-2 border-gray-200 hover:border-[#0066FF] hover:text-[#0066FF] rounded-xl h-14 font-bold text-lg transition-all shadow-none">
+            <Button className="w-full bg-white text-[#1a1a2e] border-2 border-gray-200 hover:border-[#0066FF] hover:text-[#0066FF] rounded-xl h-14 font-bold text-lg transition-all shadow-none" data-testid="button-choose-starter">
               Choose Starter
             </Button>
           </motion.div>
 
-          {/* Pro Plan */}
+          {/* Basic Plan — Most Popular */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             whileHover={{ scale: 1.05 }}
             className="bg-[#0066FF] p-10 rounded-3xl shadow-2xl relative shadow-[0_20px_50px_rgba(0,102,255,0.3)] hover:shadow-[0_30px_60px_rgba(0,102,255,0.4)] transition-all transform z-10"
-            data-testid="card-pricing-pro"
+            data-testid="card-pricing-basic"
           >
             <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#1a1a2e] text-white px-6 py-1.5 rounded-full text-sm font-bold shadow-lg uppercase tracking-wider">
               Most Popular
             </div>
-            <h3 className="text-2xl font-bold mb-2 text-white">Professional</h3>
-            <p className="text-blue-100 mb-6 h-12">For growing brands that need more pages and premium features.</p>
-            <div className="text-5xl font-extrabold text-white mb-8">£499<span className="text-lg text-blue-200 font-medium">/site</span></div>
+            <h3 className="text-2xl font-bold mb-2 text-white">Basic</h3>
+            <p className="text-blue-100 mb-6 h-12">Everything you need to establish a powerful, professional online presence.</p>
+            <div className="text-5xl font-extrabold text-white mb-8">£100<span className="text-lg text-blue-200 font-medium">/site</span></div>
             <ul className="space-y-4 mb-10 text-white">
-              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-white" /> Up to 5 Pages</li>
-              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-white" /> Premium Animations</li>
-              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-white" /> Advanced SEO Setup</li>
-              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-white" /> Contact Forms & Lead Gen</li>
+              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-white" /> 3 Pages (Home, About, Contact)</li>
+              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-white" /> Mobile Responsive Design</li>
+              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-white" /> Contact Form & Lead Capture</li>
+              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-white" /> SEO Optimisation</li>
+              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-white" /> Fast Delivery (48–72h)</li>
+              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-white" /> Social Media Links</li>
               <li className="flex items-center gap-3 text-blue-300"><X className="w-5 h-5" /> E-Commerce</li>
             </ul>
-            <Button className="w-full bg-white text-[#0066FF] hover:bg-gray-50 rounded-xl h-14 font-bold text-lg shadow-lg">
-              Choose Professional
+            <Button className="w-full bg-white text-[#0066FF] hover:bg-gray-50 rounded-xl h-14 font-bold text-lg shadow-lg" data-testid="button-choose-basic">
+              Get Started — £100
             </Button>
           </motion.div>
 
-          {/* Ecommerce Plan */}
+          {/* E-Commerce Plan */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -582,13 +585,14 @@ function Pricing() {
             <p className="text-gray-400 mb-6 h-12">Complete online stores ready to process payments and manage stock.</p>
             <div className="text-5xl font-extrabold text-[#0066FF] mb-8">£999<span className="text-lg text-gray-500 font-medium">/site</span></div>
             <ul className="space-y-4 mb-10 text-gray-300">
+              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Everything in Basic</li>
               <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Full Online Store</li>
-              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Payment Gateways Setup</li>
+              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Payment Gateway Setup</li>
               <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> CMS & Inventory</li>
               <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> 1 Month Free Support</li>
               <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Analytics Integration</li>
             </ul>
-            <Button className="w-full bg-[#2a2a4e] text-white hover:bg-[#0066FF] rounded-xl h-14 font-bold text-lg transition-colors border-transparent">
+            <Button className="w-full bg-[#2a2a4e] text-white hover:bg-[#0066FF] rounded-xl h-14 font-bold text-lg transition-colors border-transparent" data-testid="button-choose-ecommerce">
               Choose E-Commerce
             </Button>
           </motion.div>
