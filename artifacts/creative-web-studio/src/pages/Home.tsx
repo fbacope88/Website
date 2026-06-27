@@ -518,6 +518,29 @@ function Portfolio() {
 }
 
 function Pricing() {
+  const [loading, setLoading] = useState<string | null>(null);
+
+  async function handleCheckout(plan: string) {
+    setLoading(plan);
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ plan }),
+      });
+      const data = await res.json() as { url?: string; error?: string };
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        alert("Something went wrong. Please try again or contact us on WhatsApp.");
+      }
+    } catch {
+      alert("Unable to connect. Please try again or contact us on WhatsApp.");
+    } finally {
+      setLoading(null);
+    }
+  }
+
   return (
     <section id="pricing" className="py-24 bg-white relative">
       <div className="container mx-auto px-6">
@@ -552,8 +575,13 @@ function Pricing() {
               <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-white" /> Social Media Links</li>
               <li className="flex items-center gap-3 text-blue-300"><X className="w-5 h-5" /> E-Commerce</li>
             </ul>
-            <Button className="w-full bg-white text-[#0066FF] hover:bg-gray-50 rounded-xl h-14 font-bold text-lg shadow-lg" data-testid="button-choose-basic">
-              Get Started — £100
+            <Button
+              className="w-full bg-white text-[#0066FF] hover:bg-gray-50 rounded-xl h-14 font-bold text-lg shadow-lg disabled:opacity-70"
+              onClick={() => handleCheckout("basic")}
+              disabled={loading !== null}
+              data-testid="button-choose-basic"
+            >
+              {loading === "basic" ? "Redirecting…" : "Get Started — £100"}
             </Button>
           </motion.div>
 
@@ -577,8 +605,13 @@ function Pricing() {
               <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Google Analytics Integration</li>
               <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> 2 Weeks Free Support</li>
             </ul>
-            <Button className="w-full bg-white text-[#1a1a2e] border-2 border-gray-200 hover:border-[#0066FF] hover:text-[#0066FF] rounded-xl h-14 font-bold text-lg transition-all shadow-none" data-testid="button-choose-professional">
-              Choose Professional
+            <Button
+              className="w-full bg-white text-[#1a1a2e] border-2 border-gray-200 hover:border-[#0066FF] hover:text-[#0066FF] rounded-xl h-14 font-bold text-lg transition-all shadow-none disabled:opacity-70"
+              onClick={() => handleCheckout("professional")}
+              disabled={loading !== null}
+              data-testid="button-choose-professional"
+            >
+              {loading === "professional" ? "Redirecting…" : "Choose Professional"}
             </Button>
           </motion.div>
 
@@ -602,8 +635,13 @@ function Pricing() {
               <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> 1 Month Free Support</li>
               <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Analytics Integration</li>
             </ul>
-            <Button className="w-full bg-[#2a2a4e] text-white hover:bg-[#0066FF] rounded-xl h-14 font-bold text-lg transition-colors border-transparent" data-testid="button-choose-ecommerce">
-              Choose E-Commerce
+            <Button
+              className="w-full bg-[#2a2a4e] text-white hover:bg-[#0066FF] rounded-xl h-14 font-bold text-lg transition-colors border-transparent disabled:opacity-70"
+              onClick={() => handleCheckout("ecommerce")}
+              disabled={loading !== null}
+              data-testid="button-choose-ecommerce"
+            >
+              {loading === "ecommerce" ? "Redirecting…" : "Choose E-Commerce"}
             </Button>
           </motion.div>
         </div>
@@ -657,6 +695,32 @@ function Testimonials() {
 }
 
 function Contact() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!name || !email || !message) return;
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+      if (res.ok) {
+        setStatus("success");
+        setName(""); setEmail(""); setMessage("");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  }
+
   return (
     <section id="contact" className="py-24 bg-white relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-[#E8F0FF] to-transparent rounded-full blur-[120px] opacity-70 -translate-y-1/2 translate-x-1/3 pointer-events-none" />
@@ -707,23 +771,63 @@ function Contact() {
             viewport={{ once: true }}
             className="bg-white p-8 md:p-10 rounded-3xl shadow-xl relative z-10"
           >
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-[#1a1a2e]">Name</label>
-                <Input placeholder="John Doe" className="h-14 bg-gray-50 border-gray-200 focus:border-[#0066FF] focus:ring-[#0066FF] rounded-xl text-lg px-4" data-testid="input-name" />
+            {status === "success" ? (
+              <div className="text-center py-8">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle2 className="w-8 h-8 text-green-500" />
+                </div>
+                <h3 className="text-2xl font-bold text-[#1a1a2e] mb-2">Message Sent!</h3>
+                <p className="text-gray-600">We'll get back to you within 24 hours.</p>
               </div>
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-[#1a1a2e]">Email</label>
-                <Input type="email" placeholder="john@example.com" className="h-14 bg-gray-50 border-gray-200 focus:border-[#0066FF] focus:ring-[#0066FF] rounded-xl text-lg px-4" data-testid="input-email" />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-[#1a1a2e]">Project Details</label>
-                <Textarea placeholder="Tell us about your goals..." className="min-h-[140px] bg-gray-50 border-gray-200 focus:border-[#0066FF] focus:ring-[#0066FF] rounded-xl text-lg p-4 resize-none" data-testid="input-message" />
-              </div>
-              <Button className="w-full h-14 text-lg rounded-xl bg-[#0066FF] hover:bg-[#0052cc] text-white shadow-lg shadow-blue-500/30 transition-all hover:shadow-blue-500/50" data-testid="button-submit-contact">
-                Send Message
-              </Button>
-            </form>
+            ) : (
+              <form className="space-y-6" onSubmit={handleSubmit}>
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-[#1a1a2e]">Name</label>
+                  <Input
+                    placeholder="John Doe"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="h-14 bg-gray-50 border-gray-200 focus:border-[#0066FF] focus:ring-[#0066FF] rounded-xl text-lg px-4"
+                    data-testid="input-name"
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-[#1a1a2e]">Email</label>
+                  <Input
+                    type="email"
+                    placeholder="john@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="h-14 bg-gray-50 border-gray-200 focus:border-[#0066FF] focus:ring-[#0066FF] rounded-xl text-lg px-4"
+                    data-testid="input-email"
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-[#1a1a2e]">Project Details</label>
+                  <Textarea
+                    placeholder="Tell us about your goals..."
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    className="min-h-[140px] bg-gray-50 border-gray-200 focus:border-[#0066FF] focus:ring-[#0066FF] rounded-xl text-lg p-4 resize-none"
+                    data-testid="input-message"
+                    required
+                  />
+                </div>
+                {status === "error" && (
+                  <p className="text-red-500 text-sm">Something went wrong. Please try again or WhatsApp us.</p>
+                )}
+                <Button
+                  type="submit"
+                  disabled={status === "sending"}
+                  className="w-full h-14 text-lg rounded-xl bg-[#0066FF] hover:bg-[#0052cc] text-white shadow-lg shadow-blue-500/30 transition-all hover:shadow-blue-500/50 disabled:opacity-70"
+                  data-testid="button-submit-contact"
+                >
+                  {status === "sending" ? "Sending…" : "Send Message"}
+                </Button>
+              </form>
+            )}
           </motion.div>
         </div>
       </div>
