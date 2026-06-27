@@ -458,57 +458,63 @@ function Portfolio() {
           </motion.div>
         </div>
 
-        {/* Featured latest project */}
-        <motion.a
-          href="https://fbacontrol.co.uk"
-          target="_blank"
-          rel="noopener noreferrer"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="group block mb-10 cursor-pointer"
-          data-testid="card-portfolio-featured"
-        >
-          <div className="relative rounded-3xl overflow-hidden bg-white shadow-md border border-gray-100 mb-6" style={{ height: "360px" }}>
-            {/* Browser chrome */}
-            <div className="absolute top-0 left-0 right-0 h-10 bg-gray-100 border-b border-gray-200 flex items-center px-4 gap-2 z-20">
-              <div className="w-3 h-3 rounded-full bg-red-400" />
-              <div className="w-3 h-3 rounded-full bg-yellow-400" />
-              <div className="w-3 h-3 rounded-full bg-green-400" />
-              <div className="ml-4 flex-1 bg-white border border-gray-200 rounded-full h-6 flex items-center px-3 gap-2 max-w-xs">
-                <div className="w-3 h-3 text-gray-400 flex-shrink-0">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        {/* Featured live projects */}
+        <div className="grid md:grid-cols-2 gap-10 mb-10">
+          {[
+            { href: "https://fbacontrol.co.uk", domain: "fbacontrol.co.uk", title: "FBA Control", category: "E-Commerce & Amazon FBA Platform", badge: "Latest" },
+            { href: "https://lnacarsales.co.uk", domain: "lnacarsales.co.uk", title: "LNA Car Sales", category: "Automotive Sales & Dealership", badge: "Live" },
+          ].map((site, i) => (
+            <motion.a
+              key={site.domain}
+              href={site.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="group block cursor-pointer"
+              data-testid={`card-portfolio-featured-${i}`}
+            >
+              <div className="relative rounded-3xl overflow-hidden bg-white shadow-md border border-gray-100 mb-6" style={{ height: "300px" }}>
+                <div className="absolute top-0 left-0 right-0 h-10 bg-gray-100 border-b border-gray-200 flex items-center px-4 gap-2 z-20">
+                  <div className="w-3 h-3 rounded-full bg-red-400" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                  <div className="w-3 h-3 rounded-full bg-green-400" />
+                  <div className="ml-4 flex-1 bg-white border border-gray-200 rounded-full h-6 flex items-center px-3 gap-2 max-w-xs">
+                    <div className="w-3 h-3 text-gray-400 flex-shrink-0">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    </div>
+                    <span className="text-xs text-gray-500 font-mono truncate">{site.domain}</span>
+                  </div>
                 </div>
-                <span className="text-xs text-gray-500 font-mono truncate">fbacontrol.co.uk</span>
+                <iframe
+                  src={site.href}
+                  title={site.title}
+                  className="absolute top-10 inset-x-0 bottom-0 w-full h-[calc(100%-40px)] border-none pointer-events-none"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-[#0066FF]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-30 flex items-center justify-center">
+                  <span className="bg-white text-[#0066FF] px-6 py-3 rounded-full font-bold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                    Visit Live Site
+                  </span>
+                </div>
               </div>
-            </div>
-            {/* Iframe */}
-            <iframe
-              src="https://fbacontrol.co.uk"
-              title="FBA Control"
-              className="absolute top-10 inset-x-0 bottom-0 w-full h-[calc(100%-40px)] border-none transition-transform duration-700 group-hover:scale-[1.01] pointer-events-none"
-              loading="lazy"
-            />
-            {/* Hover overlay */}
-            <div className="absolute inset-0 bg-[#0066FF]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-30 flex items-center justify-center">
-              <span className="bg-white text-[#0066FF] px-6 py-3 rounded-full font-bold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                Visit Live Site
-              </span>
-            </div>
-          </div>
-          <div className="flex justify-between items-center px-2">
-            <div>
-              <div className="flex items-center gap-3 mb-1">
-                <h3 className="text-2xl font-bold text-[#1a1a2e] group-hover:text-[#0066FF] transition-colors">FBA Control</h3>
-                <span className="bg-[#E8F0FF] text-[#0066FF] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Latest</span>
+              <div className="flex justify-between items-center px-2">
+                <div>
+                  <div className="flex items-center gap-3 mb-1">
+                    <h3 className="text-2xl font-bold text-[#1a1a2e] group-hover:text-[#0066FF] transition-colors">{site.title}</h3>
+                    <span className="bg-[#E8F0FF] text-[#0066FF] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">{site.badge}</span>
+                  </div>
+                  <p className="text-gray-500">{site.category}</p>
+                </div>
+                <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 group-hover:bg-[#0066FF] group-hover:text-white group-hover:border-transparent transition-all">
+                  <ArrowRight className="w-5 h-5 -rotate-45" />
+                </div>
               </div>
-              <p className="text-gray-500">E-Commerce &amp; Amazon FBA Platform</p>
-            </div>
-            <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 group-hover:bg-[#0066FF] group-hover:text-white group-hover:border-transparent transition-all">
-              <ArrowRight className="w-5 h-5 -rotate-45" />
-            </div>
-          </div>
-        </motion.a>
+            </motion.a>
+          ))}
+        </div>
 
         <div className="grid md:grid-cols-2 gap-10">
           {works.map((work, i) => (
@@ -570,31 +576,6 @@ function Pricing() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
-          {/* Professional Plan */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            whileHover={{ scale: 1.02 }}
-            className="bg-[#FAFCFF] p-10 rounded-3xl border border-gray-200 hover:border-[#0066FF]/50 transition-all shadow-sm group"
-            data-testid="card-pricing-professional"
-          >
-            <h3 className="text-2xl font-bold mb-2 text-[#1a1a2e]">Professional</h3>
-            <p className="text-gray-500 mb-6 h-12">A feature-rich site built to grow your business and generate leads.</p>
-            <div className="text-5xl font-extrabold text-[#0066FF] mb-8">£200<span className="text-lg text-gray-500 font-medium">/site</span></div>
-            <ul className="space-y-4 mb-10 text-gray-700">
-              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Everything in Basic</li>
-              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Up to 6 Pages</li>
-              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Premium Animations & Motion</li>
-              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Blog / News Section</li>
-              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Google Analytics Integration</li>
-              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> 2 Weeks Free Support</li>
-            </ul>
-            <Button className="w-full bg-white text-[#1a1a2e] border-2 border-gray-200 hover:border-[#0066FF] hover:text-[#0066FF] rounded-xl h-14 font-bold text-lg transition-all shadow-none" data-testid="button-choose-professional">
-              Choose Professional
-            </Button>
-          </motion.div>
-
           {/* Basic Plan — Most Popular */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -621,6 +602,31 @@ function Pricing() {
             </ul>
             <Button className="w-full bg-white text-[#0066FF] hover:bg-gray-50 rounded-xl h-14 font-bold text-lg shadow-lg" data-testid="button-choose-basic">
               Get Started — £100
+            </Button>
+          </motion.div>
+
+          {/* Professional Plan */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.02 }}
+            className="bg-[#FAFCFF] p-10 rounded-3xl border border-gray-200 hover:border-[#0066FF]/50 transition-all shadow-sm group"
+            data-testid="card-pricing-professional"
+          >
+            <h3 className="text-2xl font-bold mb-2 text-[#1a1a2e]">Professional</h3>
+            <p className="text-gray-500 mb-6 h-12">A feature-rich site built to grow your business and generate leads.</p>
+            <div className="text-5xl font-extrabold text-[#0066FF] mb-8">£200<span className="text-lg text-gray-500 font-medium">/site</span></div>
+            <ul className="space-y-4 mb-10 text-gray-700">
+              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Everything in Basic</li>
+              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Up to 6 Pages</li>
+              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Premium Animations & Motion</li>
+              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Blog / News Section</li>
+              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Google Analytics Integration</li>
+              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> 2 Weeks Free Support</li>
+            </ul>
+            <Button className="w-full bg-white text-[#1a1a2e] border-2 border-gray-200 hover:border-[#0066FF] hover:text-[#0066FF] rounded-xl h-14 font-bold text-lg transition-all shadow-none" data-testid="button-choose-professional">
+              Choose Professional
             </Button>
           </motion.div>
 
