@@ -19,9 +19,14 @@ async function notifyMake(data: Record<string, unknown>) {
 }
 
 router.post("/contact", async (req, res) => {
-  const { name, email, message } = req.body as {
+  const { name, email, phone, businessName, websiteType, industry, timeline, message } = req.body as {
     name: string;
     email: string;
+    phone?: string;
+    businessName?: string;
+    websiteType?: string;
+    industry?: string;
+    timeline?: string;
     message: string;
   };
 
@@ -40,20 +45,33 @@ router.post("/contact", async (req, res) => {
         auth: { user: emailUser, pass: emailPass },
       });
 
+      const row = (label: string, value?: string) =>
+        value ? `<tr><td style="padding:8px 0;color:#666;width:160px;vertical-align:top"><strong>${label}</strong></td><td style="padding:8px 0;color:#1a1a2e">${value}</td></tr>` : "";
+
       await transporter.sendMail({
         from: emailUser,
         to: "creativewebstudioexpert@gmail.com",
         replyTo: email,
-        subject: `New enquiry from ${name}`,
-        text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+        subject: `New enquiry from ${name}${businessName ? ` — ${businessName}` : ""}`,
         html: `
-          <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
-            <h2 style="color:#0066FF">New Website Enquiry</h2>
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-            <hr style="border:1px solid #eee;margin:20px 0"/>
-            <p><strong>Message:</strong></p>
-            <p style="white-space:pre-wrap">${message}</p>
+          <div style="font-family:sans-serif;max-width:620px;margin:0 auto;border:1px solid #eee;border-radius:12px;overflow:hidden">
+            <div style="background:#0066FF;padding:24px 32px">
+              <h2 style="color:#fff;margin:0;font-size:20px">New Website Enquiry</h2>
+            </div>
+            <div style="padding:32px">
+              <table style="width:100%;border-collapse:collapse">
+                ${row("Full Name", name)}
+                ${row("Email", `<a href="mailto:${email}" style="color:#0066FF">${email}</a>`)}
+                ${row("Phone", phone)}
+                ${row("Business Name", businessName)}
+                ${row("Package Interest", websiteType)}
+                ${row("Industry", industry)}
+                ${row("Timeline", timeline)}
+              </table>
+              <hr style="border:none;border-top:1px solid #eee;margin:20px 0"/>
+              <p style="color:#666;margin:0 0 8px 0"><strong>Project Details:</strong></p>
+              <p style="color:#1a1a2e;white-space:pre-wrap;background:#f9f9f9;padding:16px;border-radius:8px;margin:0">${message}</p>
+            </div>
           </div>
         `,
       });
@@ -69,6 +87,11 @@ router.post("/contact", async (req, res) => {
     name,
     email,
     firstName: name.split(" ")[0],
+    phone,
+    businessName,
+    websiteType,
+    industry,
+    timeline,
     message,
     tags: ["contact-form"],
   });

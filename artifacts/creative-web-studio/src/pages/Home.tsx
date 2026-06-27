@@ -695,30 +695,35 @@ function Testimonials() {
 }
 
 function Contact() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const blank = { name: "", email: "", phone: "", businessName: "", websiteType: "", industry: "", timeline: "", message: "" };
+  const [fields, setFields] = useState(blank);
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
+  const set = (k: keyof typeof blank) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
+    setFields(f => ({ ...f, [k]: e.target.value }));
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!name || !email || !message) return;
     setStatus("sending");
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
+        body: JSON.stringify(fields),
       });
       if (res.ok) {
         setStatus("success");
-        setName(""); setEmail(""); setMessage("");
       } else {
         setStatus("error");
       }
     } catch {
       setStatus("error");
     }
+  }
+
+  function reset() {
+    setFields(blank);
+    setStatus("idle");
   }
 
   return (
@@ -777,54 +782,67 @@ function Contact() {
                   <CheckCircle2 className="w-8 h-8 text-green-500" />
                 </div>
                 <h3 className="text-2xl font-bold text-[#1a1a2e] mb-2">Message Sent!</h3>
-                <p className="text-gray-600">We'll get back to you within 24 hours.</p>
+                <p className="text-gray-600 mb-6">We'll get back to you within 24 hours.</p>
+                <Button onClick={reset} className="bg-[#0066FF] hover:bg-[#0052cc] text-white rounded-xl px-8 h-12">
+                  Send Another Enquiry
+                </Button>
               </div>
             ) : (
-              <form className="space-y-6" onSubmit={handleSubmit}>
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-[#1a1a2e]">Name</label>
-                  <Input
-                    placeholder="John Doe"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="h-14 bg-gray-50 border-gray-200 focus:border-[#0066FF] focus:ring-[#0066FF] rounded-xl text-lg px-4"
-                    data-testid="input-name"
-                    required
-                  />
+              <form className="space-y-4" onSubmit={handleSubmit}>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-1">
+                    <label className="text-sm font-bold text-[#1a1a2e]">Full Name *</label>
+                    <Input placeholder="John Doe" value={fields.name} onChange={set("name")} className="h-12 bg-gray-50 border-gray-200 focus:border-[#0066FF] rounded-xl px-4" data-testid="input-name" required />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-sm font-bold text-[#1a1a2e]">Phone Number</label>
+                    <Input placeholder="+44 7700 000000" value={fields.phone} onChange={set("phone")} className="h-12 bg-gray-50 border-gray-200 focus:border-[#0066FF] rounded-xl px-4" data-testid="input-phone" />
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-[#1a1a2e]">Email</label>
-                  <Input
-                    type="email"
-                    placeholder="john@example.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="h-14 bg-gray-50 border-gray-200 focus:border-[#0066FF] focus:ring-[#0066FF] rounded-xl text-lg px-4"
-                    data-testid="input-email"
-                    required
-                  />
+                <div className="space-y-1">
+                  <label className="text-sm font-bold text-[#1a1a2e]">Email Address *</label>
+                  <Input type="email" placeholder="john@example.com" value={fields.email} onChange={set("email")} className="h-12 bg-gray-50 border-gray-200 focus:border-[#0066FF] rounded-xl px-4" data-testid="input-email" required />
                 </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-[#1a1a2e]">Project Details</label>
-                  <Textarea
-                    placeholder="Tell us about your goals..."
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    className="min-h-[140px] bg-gray-50 border-gray-200 focus:border-[#0066FF] focus:ring-[#0066FF] rounded-xl text-lg p-4 resize-none"
-                    data-testid="input-message"
-                    required
-                  />
+                <div className="space-y-1">
+                  <label className="text-sm font-bold text-[#1a1a2e]">Business / Brand Name *</label>
+                  <Input placeholder="e.g. Acme Ltd" value={fields.businessName} onChange={set("businessName")} className="h-12 bg-gray-50 border-gray-200 focus:border-[#0066FF] rounded-xl px-4" data-testid="input-business" required />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-1">
+                    <label className="text-sm font-bold text-[#1a1a2e]">Website Package *</label>
+                    <select value={fields.websiteType} onChange={set("websiteType")} required className="w-full h-12 bg-gray-50 border border-gray-200 focus:border-[#0066FF] rounded-xl px-4 text-gray-700 text-sm outline-none" data-testid="input-website-type">
+                      <option value="">Select a package…</option>
+                      <option value="Basic — £100">Basic — £100</option>
+                      <option value="Professional — £200">Professional — £200</option>
+                      <option value="E-Commerce — £999">E-Commerce — £999</option>
+                      <option value="Not sure yet">Not sure yet</option>
+                    </select>
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-sm font-bold text-[#1a1a2e]">Ideal Timeline *</label>
+                    <select value={fields.timeline} onChange={set("timeline")} required className="w-full h-12 bg-gray-50 border border-gray-200 focus:border-[#0066FF] rounded-xl px-4 text-gray-700 text-sm outline-none" data-testid="input-timeline">
+                      <option value="">Select timeline…</option>
+                      <option value="ASAP (48–72 hrs)">ASAP (48–72 hrs)</option>
+                      <option value="Within 1 week">Within 1 week</option>
+                      <option value="Within 2 weeks">Within 2 weeks</option>
+                      <option value="Within a month">Within a month</option>
+                      <option value="Flexible">Flexible</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="space-y-1">
+                  <label className="text-sm font-bold text-[#1a1a2e]">Industry / Type of Business *</label>
+                  <Input placeholder="e.g. Car dealership, clothing, restaurant…" value={fields.industry} onChange={set("industry")} className="h-12 bg-gray-50 border-gray-200 focus:border-[#0066FF] rounded-xl px-4" data-testid="input-industry" required />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-sm font-bold text-[#1a1a2e]">Project Details *</label>
+                  <Textarea placeholder="Tell us what you need — pages, features, colours, any sites you like the look of…" value={fields.message} onChange={set("message")} className="min-h-[110px] bg-gray-50 border-gray-200 focus:border-[#0066FF] rounded-xl text-sm p-4 resize-none" data-testid="input-message" required />
                 </div>
                 {status === "error" && (
                   <p className="text-red-500 text-sm">Something went wrong. Please try again or WhatsApp us.</p>
                 )}
-                <Button
-                  type="submit"
-                  disabled={status === "sending"}
-                  className="w-full h-14 text-lg rounded-xl bg-[#0066FF] hover:bg-[#0052cc] text-white shadow-lg shadow-blue-500/30 transition-all hover:shadow-blue-500/50 disabled:opacity-70"
-                  data-testid="button-submit-contact"
-                >
-                  {status === "sending" ? "Sending…" : "Send Message"}
+                <Button type="submit" disabled={status === "sending"} className="w-full h-14 text-lg rounded-xl bg-[#0066FF] hover:bg-[#0052cc] text-white shadow-lg shadow-blue-500/30 transition-all hover:shadow-blue-500/50 disabled:opacity-70" data-testid="button-submit-contact">
+                  {status === "sending" ? "Sending…" : "Send Enquiry"}
                 </Button>
               </form>
             )}
