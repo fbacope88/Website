@@ -408,7 +408,7 @@ function WhyUs() {
                            </div>
                          ))}
                        </div>
-                       <p className="text-sm font-medium text-white">Join 110+ happy customers</p>
+                       <p className="text-sm font-medium text-white">Join 100+ Happy Customers</p>
                      </div>
                      <p className="text-white/80 text-sm">"The fastest and highest quality agency we've ever worked with. A complete game changer."</p>
                    </div>
@@ -570,28 +570,28 @@ function Pricing() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
-          {/* Starter Plan */}
+          {/* Professional Plan */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             whileHover={{ scale: 1.02 }}
             className="bg-[#FAFCFF] p-10 rounded-3xl border border-gray-200 hover:border-[#0066FF]/50 transition-all shadow-sm group"
-            data-testid="card-pricing-starter"
+            data-testid="card-pricing-professional"
           >
-            <h3 className="text-2xl font-bold mb-2 text-[#1a1a2e]">Starter</h3>
-            <p className="text-gray-500 mb-6 h-12">A single polished landing page to get your business online fast.</p>
-            <div className="text-5xl font-extrabold text-[#0066FF] mb-8">£75<span className="text-lg text-gray-500 font-medium">/site</span></div>
+            <h3 className="text-2xl font-bold mb-2 text-[#1a1a2e]">Professional</h3>
+            <p className="text-gray-500 mb-6 h-12">A feature-rich site built to grow your business and generate leads.</p>
+            <div className="text-5xl font-extrabold text-[#0066FF] mb-8">£200<span className="text-lg text-gray-500 font-medium">/site</span></div>
             <ul className="space-y-4 mb-10 text-gray-700">
-              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> 1 Page Landing Site</li>
-              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Mobile Responsive Design</li>
-              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Fast Delivery (48h)</li>
-              <li className="flex items-center gap-3 text-gray-400"><X className="w-5 h-5" /> Multiple Pages</li>
-              <li className="flex items-center gap-3 text-gray-400"><X className="w-5 h-5" /> Contact Forms & Lead Gen</li>
-              <li className="flex items-center gap-3 text-gray-400"><X className="w-5 h-5" /> Advanced SEO Setup</li>
+              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Everything in Basic</li>
+              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Up to 6 Pages</li>
+              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Premium Animations & Motion</li>
+              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Blog / News Section</li>
+              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Google Analytics Integration</li>
+              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> 2 Weeks Free Support</li>
             </ul>
-            <Button className="w-full bg-white text-[#1a1a2e] border-2 border-gray-200 hover:border-[#0066FF] hover:text-[#0066FF] rounded-xl h-14 font-bold text-lg transition-all shadow-none" data-testid="button-choose-starter">
-              Choose Starter
+            <Button className="w-full bg-white text-[#1a1a2e] border-2 border-gray-200 hover:border-[#0066FF] hover:text-[#0066FF] rounded-xl h-14 font-bold text-lg transition-all shadow-none" data-testid="button-choose-professional">
+              Choose Professional
             </Button>
           </motion.div>
 
