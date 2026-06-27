@@ -451,15 +451,6 @@ function Portfolio() {
             <h2 className="text-4xl md:text-5xl font-bold text-[#1a1a2e] mb-4">Latest Projects</h2>
             <p className="text-gray-600 text-lg">Our last three completed client projects — live and ready to explore.</p>
           </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <Button variant="outline" className="rounded-full h-12 px-8 group border-gray-300">
-              View All Projects <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
-          </motion.div>
         </div>
 
         {/* Featured live projects */}
