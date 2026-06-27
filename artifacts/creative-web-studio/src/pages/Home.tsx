@@ -535,8 +535,8 @@ function Pricing() {
               <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Mobile Responsive Design</li>
               <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-[#0066FF]" /> Fast Delivery (48h)</li>
               <li className="flex items-center gap-3 text-gray-400"><X className="w-5 h-5" /> Multiple Pages</li>
-              <li className="flex items-center gap-3 text-gray-400"><X className="w-5 h-5" /> Contact Form</li>
-              <li className="flex items-center gap-3 text-gray-400"><X className="w-5 h-5" /> SEO Optimisation</li>
+              <li className="flex items-center gap-3 text-gray-400"><X className="w-5 h-5" /> Contact Forms & Lead Gen</li>
+              <li className="flex items-center gap-3 text-gray-400"><X className="w-5 h-5" /> Advanced SEO Setup</li>
             </ul>
             <Button className="w-full bg-white text-[#1a1a2e] border-2 border-gray-200 hover:border-[#0066FF] hover:text-[#0066FF] rounded-xl h-14 font-bold text-lg transition-all shadow-none" data-testid="button-choose-starter">
               Choose Starter
@@ -561,8 +561,8 @@ function Pricing() {
             <ul className="space-y-4 mb-10 text-white">
               <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-white" /> 3 Pages (Home, About, Contact)</li>
               <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-white" /> Mobile Responsive Design</li>
-              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-white" /> Contact Form & Lead Capture</li>
-              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-white" /> SEO Optimisation</li>
+              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-white" /> Contact Forms & Lead Gen</li>
+              <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-white" /> Advanced SEO Setup</li>
               <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-white" /> Fast Delivery (48–72h)</li>
               <li className="flex items-center gap-3"><CheckCircle2 className="w-5 h-5 text-white" /> Social Media Links</li>
               <li className="flex items-center gap-3 text-blue-300"><X className="w-5 h-5" /> E-Commerce</li>
