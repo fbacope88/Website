@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence, useInView, useMotionValue, useSpring } from "framer-motion";
-import { ArrowRight, CheckCircle2, Code, Smartphone, Zap, Search, MessageSquare, Menu, X, Star, ShieldCheck, Clock, Award, ChevronRight } from "lucide-react";
+import { ArrowRight, CheckCircle2, Code, Layout, Smartphone, Zap, Search, MessageSquare, Menu, X, Star, ShieldCheck, Clock, Award, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
