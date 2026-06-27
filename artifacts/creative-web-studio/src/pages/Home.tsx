@@ -62,7 +62,7 @@ function Navbar() {
     >
       <div className="container mx-auto px-6 h-20 flex items-center justify-between">
         <button onClick={() => scrollTo("hero")} className="flex items-center gap-2 outline-none">
-          <img src="/assets/logo.png" alt="Creative Web Studio Experts" className={`h-8 w-auto ${scrolled ? "brightness-0 invert" : ""}`} data-testid="img-logo-nav" />
+          <img src="/assets/logo.png" alt="Creative Web Studio Experts" className="h-10 w-auto" data-testid="img-logo-nav" />
         </button>
 
         <nav className="hidden md:flex items-center gap-8 font-medium">
@@ -262,13 +262,13 @@ function Stats() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-white/20">
           <div className="text-center px-4">
             <div className="text-4xl md:text-5xl font-bold mb-2 tracking-tight">
-              <Counter from={0} to={500} />+
+              <Counter from={0} to={100} />+
             </div>
             <div className="text-blue-100 font-medium">Projects Delivered</div>
           </div>
           <div className="text-center px-4">
             <div className="text-4xl md:text-5xl font-bold mb-2 tracking-tight">
-              <Counter from={0} to={200} />+
+              <Counter from={0} to={100} />+
             </div>
             <div className="text-blue-100 font-medium">Happy Clients</div>
           </div>
@@ -408,7 +408,7 @@ function WhyUs() {
                            </div>
                          ))}
                        </div>
-                       <p className="text-sm font-medium text-white">Join 500+ founders</p>
+                       <p className="text-sm font-medium text-white">Join 110+ happy customers</p>
                      </div>
                      <p className="text-white/80 text-sm">"The fastest and highest quality agency we've ever worked with. A complete game changer."</p>
                    </div>
@@ -457,6 +457,58 @@ function Portfolio() {
             </Button>
           </motion.div>
         </div>
+
+        {/* Featured latest project */}
+        <motion.a
+          href="https://fbacontrol.co.uk"
+          target="_blank"
+          rel="noopener noreferrer"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="group block mb-10 cursor-pointer"
+          data-testid="card-portfolio-featured"
+        >
+          <div className="relative rounded-3xl overflow-hidden bg-white shadow-md border border-gray-100 mb-6" style={{ height: "360px" }}>
+            {/* Browser chrome */}
+            <div className="absolute top-0 left-0 right-0 h-10 bg-gray-100 border-b border-gray-200 flex items-center px-4 gap-2 z-20">
+              <div className="w-3 h-3 rounded-full bg-red-400" />
+              <div className="w-3 h-3 rounded-full bg-yellow-400" />
+              <div className="w-3 h-3 rounded-full bg-green-400" />
+              <div className="ml-4 flex-1 bg-white border border-gray-200 rounded-full h-6 flex items-center px-3 gap-2 max-w-xs">
+                <div className="w-3 h-3 text-gray-400 flex-shrink-0">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </div>
+                <span className="text-xs text-gray-500 font-mono truncate">fbacontrol.co.uk</span>
+              </div>
+            </div>
+            {/* Iframe */}
+            <iframe
+              src="https://fbacontrol.co.uk"
+              title="FBA Control"
+              className="absolute top-10 inset-x-0 bottom-0 w-full h-[calc(100%-40px)] border-none transition-transform duration-700 group-hover:scale-[1.01] pointer-events-none"
+              loading="lazy"
+            />
+            {/* Hover overlay */}
+            <div className="absolute inset-0 bg-[#0066FF]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-30 flex items-center justify-center">
+              <span className="bg-white text-[#0066FF] px-6 py-3 rounded-full font-bold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                Visit Live Site
+              </span>
+            </div>
+          </div>
+          <div className="flex justify-between items-center px-2">
+            <div>
+              <div className="flex items-center gap-3 mb-1">
+                <h3 className="text-2xl font-bold text-[#1a1a2e] group-hover:text-[#0066FF] transition-colors">FBA Control</h3>
+                <span className="bg-[#E8F0FF] text-[#0066FF] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Latest</span>
+              </div>
+              <p className="text-gray-500">E-Commerce &amp; Amazon FBA Platform</p>
+            </div>
+            <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 group-hover:bg-[#0066FF] group-hover:text-white group-hover:border-transparent transition-all">
+              <ArrowRight className="w-5 h-5 -rotate-45" />
+            </div>
+          </div>
+        </motion.a>
 
         <div className="grid md:grid-cols-2 gap-10">
           {works.map((work, i) => (
@@ -721,7 +773,7 @@ function Footer() {
       <div className="container mx-auto px-6 text-center md:text-left">
         <div className="grid md:grid-cols-4 gap-10 mb-12">
           <div className="col-span-2">
-            <img src="/assets/logo.png" alt="Logo" className="h-10 w-auto mb-6 brightness-0 invert mx-auto md:mx-0" />
+            <img src="/assets/logo.png" alt="Logo" className="h-10 w-auto mb-6 mx-auto md:mx-0" />
             <p className="max-w-md mx-auto md:mx-0 leading-relaxed text-gray-500">
               Premium web design agency delivering high-converting, stunning websites starting from just £100. We build the digital future of ambitious brands.
             </p>
