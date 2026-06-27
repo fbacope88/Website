@@ -449,7 +449,7 @@ function Portfolio() {
           >
             <span className="text-[#0066FF] font-bold tracking-wider uppercase text-sm mb-4 block">Our Work</span>
             <h2 className="text-4xl md:text-5xl font-bold text-[#1a1a2e] mb-4">Latest Projects</h2>
-            <p className="text-gray-600 text-lg">A selection of our recent web design and development projects.</p>
+            <p className="text-gray-600 text-lg">Our last three completed client projects — live and ready to explore.</p>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, x: 20 }}
