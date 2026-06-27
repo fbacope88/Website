@@ -22,4 +22,4 @@ timeoutMs = 20000
 [userenv]
 
 [userenv.shared]
-MAKE_WEBHOOK_URL = ""
+MAKE_WEBHOOK_URL = "https://hook.eu2.make.com/hn6idmtz992pb6v96n6oa516edczrew6"
