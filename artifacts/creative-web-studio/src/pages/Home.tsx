@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence, useInView, useMotionValue, useSpring } from "framer-motion";
-import { ArrowRight, CheckCircle2, Code, Layout, Smartphone, Zap, Search, MessageSquare, Menu, X, Star, ShieldCheck, Clock, Award, ChevronRight } from "lucide-react";
+import { ArrowRight, CheckCircle2, Code, Smartphone, Zap, Search, MessageSquare, Menu, X, Star, ShieldCheck, Clock, Award, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -426,12 +426,6 @@ function WhyUs() {
 }
 
 function Portfolio() {
-  const works = [
-    { title: "Fintech Platform", category: "Corporate", color: "bg-blue-100" },
-    { title: "E-Commerce Store", category: "Retail", color: "bg-purple-100" },
-    { title: "SaaS Dashboard", category: "Technology", color: "bg-emerald-100" },
-    { title: "Creative Agency", category: "Portfolio", color: "bg-orange-100" },
-  ];
 
   return (
     <section id="portfolio" className="py-24 bg-gray-50">
@@ -517,50 +511,6 @@ function Portfolio() {
           ))}
         </div>
 
-        <div className="grid md:grid-cols-2 gap-10">
-          {works.map((work, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: i * 0.1 }}
-              className="group cursor-pointer"
-              data-testid={`card-portfolio-${i}`}
-            >
-              <div className="relative rounded-3xl overflow-hidden bg-white shadow-sm border border-gray-100 aspect-[4/3] mb-6">
-                {/* Mock Browser Frame */}
-                <div className="absolute top-0 left-0 right-0 h-10 bg-gray-100 border-b border-gray-200 flex items-center px-4 gap-2 z-20">
-                  <div className="w-3 h-3 rounded-full bg-red-400" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                  <div className="w-3 h-3 rounded-full bg-green-400" />
-                </div>
-                {/* Mock Content */}
-                <div className={`absolute top-10 inset-x-0 bottom-0 ${work.color} transition-transform duration-700 group-hover:scale-105 flex items-center justify-center`}>
-                  <div className="text-center opacity-50">
-                    <Layout className="w-16 h-16 mx-auto mb-4 text-[#1a1a2e]" />
-                    <span className="font-mono text-[#1a1a2e] font-bold">Project Preview</span>
-                  </div>
-                </div>
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-[#0066FF]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-30 flex items-center justify-center">
-                  <span className="bg-white text-[#0066FF] px-6 py-3 rounded-full font-bold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                    View Case Study
-                  </span>
-                </div>
-              </div>
-              <div className="flex justify-between items-center px-2">
-                <div>
-                  <h3 className="text-2xl font-bold text-[#1a1a2e] group-hover:text-[#0066FF] transition-colors">{work.title}</h3>
-                  <p className="text-gray-500 mt-1">{work.category}</p>
-                </div>
-                <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 group-hover:bg-[#0066FF] group-hover:text-white group-hover:border-transparent transition-all">
-                  <ArrowRight className="w-5 h-5 -rotate-45" />
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
       </div>
     </section>
   );
