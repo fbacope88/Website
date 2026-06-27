@@ -463,6 +463,7 @@ function Portfolio() {
           {[
             { href: "https://fbacontrol.co.uk", domain: "fbacontrol.co.uk", title: "FBA Control", category: "E-Commerce & Amazon FBA Platform", badge: "Latest" },
             { href: "https://lnacarsales.co.uk", domain: "lnacarsales.co.uk", title: "LNA Car Sales", category: "Automotive Sales & Dealership", badge: "Live" },
+            { href: "https://freshbuysltd.co.uk", domain: "freshbuysltd.co.uk", title: "Fresh Buys Ltd", category: "Retail & Online Shopping", badge: "Live" },
           ].map((site, i) => (
             <motion.a
               key={site.domain}
