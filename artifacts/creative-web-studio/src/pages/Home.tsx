@@ -461,7 +461,6 @@ function Portfolio() {
         {/* Featured live projects */}
         <div className="grid md:grid-cols-2 gap-10 mb-10">
           {[
-            { href: "https://fbacontrol.co.uk", domain: "fbacontrol.co.uk", title: "FBA Control", category: "E-Commerce & Amazon FBA Platform", badge: "Latest" },
             { href: "https://lnacarsales.co.uk", domain: "lnacarsales.co.uk", title: "LNA Car Sales", category: "Automotive Sales & Dealership", badge: "Live" },
             { href: "https://freshbuysltd.co.uk", domain: "freshbuysltd.co.uk", title: "Fresh Buys Ltd", category: "Retail & Online Shopping", badge: "Live" },
             { href: "https://www.prioritypings.co.uk", domain: "prioritypings.co.uk", title: "Priority Pings", category: "Digital Services & Notifications", badge: "Live" },
