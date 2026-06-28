@@ -661,9 +661,9 @@ function Testimonials() {
 
         <div className="grid md:grid-cols-3 gap-8">
           {[
-            { name: "Naz A.", role: "Owner, LNA Car Sales", quote: "Exactly what I needed for my dealership. The site went live in under 3 days and customers have already commented on how professional it looks. Great value for money." },
+            { name: "Azza A.", role: "Owner, LNA Car Sales", quote: "Exactly what I needed for my dealership. The site went live in under 3 days and customers have already commented on how professional it looks. Great value for money." },
             { name: "Jordan B.", role: "Director, Fresh Buys Ltd", quote: "We needed a clean retail site fast and Creative Web Studio delivered. The design is sharp, mobile-friendly, and our enquiries have noticeably increased since launch." },
-            { name: "Marcus O.", role: "Founder, MyFreshBuys", quote: "The e-commerce build was seamless from start to finish. Everything works perfectly — product pages, checkout, the lot. I'd recommend them to any online seller." }
+            { name: "Marcus O.", role: "Founder, Amazon FBA", quote: "The e-commerce build was seamless from start to finish. Everything works perfectly — product pages, checkout, the lot. I'd recommend them to any online seller." }
           ].map((testimonial, i) => (
             <motion.div
               key={i}
