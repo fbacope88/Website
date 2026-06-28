@@ -2,12 +2,18 @@ import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLocation } from "wouter";
+import { Helmet } from "react-helmet-async";
 
 export default function PaymentSuccess() {
   const [, navigate] = useLocation();
 
   return (
     <div className="min-h-screen bg-[#FAFCFF] flex items-center justify-center px-6">
+      <Helmet>
+        <title>Payment Successful | Creative Web Studio Experts</title>
+        <meta name="description" content="Your payment was received. Creative Web Studio Experts will be in touch within 24 hours to kick off your web design project." />
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}

@@ -1,11 +1,27 @@
 import { useLocation } from "wouter";
 import { ArrowLeft } from "lucide-react";
+import { Helmet } from "react-helmet-async";
+
+const SITE_URL = import.meta.env.VITE_SITE_URL ?? "";
 
 export default function PrivacyPolicy() {
   const [, navigate] = useLocation();
 
   return (
     <div className="min-h-screen bg-white font-sans text-[#1a1a2e]">
+      <Helmet>
+        <title>Privacy Policy | Creative Web Studio Experts</title>
+        <meta name="description" content="Read the Creative Web Studio Experts privacy policy to understand how we collect, use, and protect your personal information as a UK-based web design agency." />
+        <meta name="robots" content="index, follow" />
+        {SITE_URL && <link rel="canonical" href={`${SITE_URL}/privacy-policy`} />}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Privacy Policy | Creative Web Studio Experts" />
+        <meta property="og:description" content="Read the Creative Web Studio Experts privacy policy to understand how we collect, use, and protect your personal information as a UK-based web design agency." />
+        <meta property="og:url" content={`${SITE_URL}/privacy-policy`} />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Privacy Policy | Creative Web Studio Experts" />
+        <meta name="twitter:description" content="Read the Creative Web Studio Experts privacy policy to understand how we collect, use, and protect your personal information as a UK-based web design agency." />
+      </Helmet>
       <div className="bg-[#1a1a2e] py-12 px-6">
         <div className="max-w-3xl mx-auto">
           <button

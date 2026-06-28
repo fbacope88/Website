@@ -2,12 +2,18 @@ import { motion } from "framer-motion";
 import { XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLocation } from "wouter";
+import { Helmet } from "react-helmet-async";
 
 export default function PaymentCancel() {
   const [, navigate] = useLocation();
 
   return (
     <div className="min-h-screen bg-[#FAFCFF] flex items-center justify-center px-6">
+      <Helmet>
+        <title>Payment Cancelled | Creative Web Studio Experts</title>
+        <meta name="description" content="Your payment was cancelled and nothing was charged. Browse our web design packages or contact Creative Web Studio Experts for help choosing the right option." />
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}

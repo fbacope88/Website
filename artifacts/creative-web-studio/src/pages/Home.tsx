@@ -1,9 +1,12 @@
 import { useEffect, useState, useRef } from "react";
+import { Helmet } from "react-helmet-async";
 import { motion, useScroll, useTransform, AnimatePresence, useInView, useMotionValue, useSpring } from "framer-motion";
 import { ArrowRight, CheckCircle2, Code, Layout, Smartphone, Zap, Search, MessageSquare, Menu, X, Star, ShieldCheck, Clock, Award, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+
+const SITE_URL = import.meta.env.VITE_SITE_URL ?? "";
 
 function Counter({ from, to, duration = 2 }: { from: number; to: number; duration?: number }) {
   const nodeRef = useRef<HTMLSpanElement>(null);
@@ -876,6 +879,21 @@ function Footer() {
 export default function Home() {
   return (
     <div className="min-h-screen bg-white selection:bg-[#0066FF] selection:text-white font-sans text-[#1a1a2e]">
+      <Helmet>
+        <title>Professional Web Design Agency | Creative Web Studio Experts</title>
+        <meta name="description" content="Creative Web Studio Experts — professional web design services for businesses across the UK. Custom website design, SEO-friendly development, and expert web design agency solutions tailored to your brand." />
+        <meta name="robots" content="index, follow" />
+        {SITE_URL && <link rel="canonical" href={`${SITE_URL}/`} />}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Professional Web Design Agency | Creative Web Studio Experts" />
+        <meta property="og:description" content="Creative Web Studio Experts — professional web design services for businesses across the UK. Custom website design, SEO-friendly development, and expert web design agency solutions tailored to your brand." />
+        <meta property="og:url" content={`${SITE_URL}/`} />
+        <meta property="og:image" content={`${SITE_URL}/opengraph.jpg`} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Professional Web Design Agency | Creative Web Studio Experts" />
+        <meta name="twitter:description" content="Creative Web Studio Experts — professional web design services for businesses across the UK. Custom website design, SEO-friendly development, and expert web design agency solutions tailored to your brand." />
+        <meta name="twitter:image" content={`${SITE_URL}/opengraph.jpg`} />
+      </Helmet>
       <Navbar />
       <main>
         <Hero />

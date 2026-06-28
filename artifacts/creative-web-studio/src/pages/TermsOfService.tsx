@@ -1,11 +1,27 @@
 import { useLocation } from "wouter";
 import { ArrowLeft } from "lucide-react";
+import { Helmet } from "react-helmet-async";
+
+const SITE_URL = import.meta.env.VITE_SITE_URL ?? "";
 
 export default function TermsOfService() {
   const [, navigate] = useLocation();
 
   return (
     <div className="min-h-screen bg-white font-sans text-[#1a1a2e]">
+      <Helmet>
+        <title>Terms of Service | Creative Web Studio Experts</title>
+        <meta name="description" content="Read the Creative Web Studio Experts terms of service governing your use of our website and professional web design services for UK businesses." />
+        <meta name="robots" content="index, follow" />
+        {SITE_URL && <link rel="canonical" href={`${SITE_URL}/terms-of-service`} />}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Terms of Service | Creative Web Studio Experts" />
+        <meta property="og:description" content="Read the Creative Web Studio Experts terms of service governing your use of our website and professional web design services for UK businesses." />
+        <meta property="og:url" content={`${SITE_URL}/terms-of-service`} />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Terms of Service | Creative Web Studio Experts" />
+        <meta name="twitter:description" content="Read the Creative Web Studio Experts terms of service governing your use of our website and professional web design services for UK businesses." />
+      </Helmet>
       <div className="bg-[#1a1a2e] py-12 px-6">
         <div className="max-w-3xl mx-auto">
           <button
