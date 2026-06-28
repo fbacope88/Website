@@ -1,12 +1,9 @@
-import { useLocation } from "wouter";
 import { ArrowLeft } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 
 const SITE_URL = import.meta.env.VITE_SITE_URL ?? "";
 
 export default function TermsOfService() {
-  const [, navigate] = useLocation();
-
   return (
     <div className="min-h-screen bg-white font-sans text-[#1a1a2e]">
       <Helmet>
@@ -24,12 +21,12 @@ export default function TermsOfService() {
       </Helmet>
       <div className="bg-[#1a1a2e] py-12 px-6">
         <div className="max-w-3xl mx-auto">
-          <button
-            onClick={() => navigate("/")}
+          <a
+            href="/"
             className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-6 text-sm"
           >
             <ArrowLeft className="w-4 h-4" /> Back to Home
-          </button>
+          </a>
           <h1 className="text-3xl md:text-4xl font-bold text-white">Terms of Service</h1>
           <p className="text-gray-400 mt-2">Last updated: June 2025</p>
         </div>

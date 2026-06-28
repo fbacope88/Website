@@ -8,6 +8,70 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ProfessionalService",
+          "@id": "%VITE_SITE_URL%/#business",
+          "name": "Creative Web Studio Experts",
+          "description": "UK-based premium web design agency delivering high-converting, stunning websites starting from £100. Custom website design, SEO-friendly development, and expert solutions tailored to your brand.",
+          "url": "%VITE_SITE_URL%/",
+          "email": "creativewebstudioexpert@gmail.com",
+          "telephone": "+447907313846",
+          "areaServed": {
+            "@type": "Country",
+            "name": "United Kingdom"
+          },
+          "priceRange": "££",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "email": "creativewebstudioexpert@gmail.com",
+            "availableLanguage": "English"
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Web Design Packages",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "name": "Basic Website",
+                "description": "3-page responsive website with contact forms, advanced SEO setup, social media links, and 48–72 hour delivery.",
+                "price": "100",
+                "priceCurrency": "GBP"
+              },
+              {
+                "@type": "Offer",
+                "name": "Professional Website",
+                "description": "Up to 6-page website with premium animations, blog/news section, Google Analytics integration, and 2 weeks free support.",
+                "price": "200",
+                "priceCurrency": "GBP"
+              },
+              {
+                "@type": "Offer",
+                "name": "E-Commerce Website",
+                "description": "Full online store with payment gateway setup, CMS and inventory management, analytics integration, and 1 month free support.",
+                "price": "999",
+                "priceCurrency": "GBP"
+              }
+            ]
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "%VITE_SITE_URL%/#website",
+          "url": "%VITE_SITE_URL%/",
+          "name": "Creative Web Studio Experts",
+          "description": "Professional web design agency for businesses across the UK.",
+          "publisher": {
+            "@id": "%VITE_SITE_URL%/#business"
+          }
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

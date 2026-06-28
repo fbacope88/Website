@@ -1,12 +1,9 @@
 import { motion } from "framer-motion";
 import { XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useLocation } from "wouter";
 import { Helmet } from "react-helmet-async";
 
 export default function PaymentCancel() {
-  const [, navigate] = useLocation();
-
   return (
     <div className="min-h-screen bg-[#FAFCFF] flex items-center justify-center px-6">
       <Helmet>
@@ -36,15 +33,10 @@ export default function PaymentCancel() {
 
         <div className="flex flex-col sm:flex-row gap-4">
           <Button
+            asChild
             className="flex-1 bg-[#0066FF] hover:bg-[#0052cc] text-white rounded-xl h-12"
-            onClick={() => {
-              navigate("/");
-              setTimeout(() => {
-                document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" });
-              }, 100);
-            }}
           >
-            View Packages
+            <a href="/#pricing">View Packages</a>
           </Button>
           <a
             href="https://wa.me/447907313846"
