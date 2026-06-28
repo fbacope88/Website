@@ -1,13 +1,9 @@
 {
   "version": 2,
-  "buildCommand": "pnpm --filter @workspace/creative-web-studio run build && pnpm --filter @workspace/api-server run build",
-  "builds": [
-    {
-      "src": "artifacts/api-server/dist/index.mjs",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "artifacts/api-server/dist/index.mjs" }
-  ]
+  "buildCommand": "cd artifacts/api-server && pnpm run build",
+  "outputDirectory": "artifacts/api-server",
+  "env": {
+    "PORT": "3000",
+    "VITE_SITE_URL": "https://creativewebstudioexpert.co.uk"
+  }
 }
