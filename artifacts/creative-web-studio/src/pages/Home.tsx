@@ -881,10 +881,10 @@ export default function Home() {
         <Hero />
         <Stats />
         <Services />
+        <Pricing />
         <WhyUs />
         <Portfolio />
         <Testimonials />
-        <Pricing />
         <Contact />
       </main>
       <Footer />
