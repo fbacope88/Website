@@ -8,6 +8,7 @@ import PaymentSuccess from "@/pages/PaymentSuccess";
 import PaymentCancel from "@/pages/PaymentCancel";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsOfService from "@/pages/TermsOfService";
+import Blog from "@/pages/Blog";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,7 @@ function AppRoutes() {
       <Route path="/payment-cancel" component={PaymentCancel} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/terms-of-service" component={TermsOfService} />
+      <Route path="/blog" component={Blog} />
       <Route component={NotFound} />
     </Switch>
   );
