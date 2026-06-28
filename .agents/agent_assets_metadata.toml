@@ -1,0 +1,8 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "Gk7kYr33zCIPTL7USP40T"
+uri = "file://artifacts/creative-web-studio/public/assets/blog-hero-crewe.png"
+type = "image"
+title = "web design mockup hero"

@@ -5,7 +5,7 @@ date: "2025-06-28"
 excerpt: "Looking for affordable web design in Crewe? Get a professionally designed, mobile-ready website from just £100. Fast turnaround, no hidden fees, and built to convert visitors into customers."
 keywords: ["affordable web design Crewe", "web design Crewe", "cheap website design Crewe", "small business website Crewe", "professional website design Crewe", "£100 website design", "web design agency Crewe"]
 author: "Creative Web Studio Experts"
-image: "/assets/logo.png"
+image: "/assets/blog-hero-crewe.png"
 ---
 
 # Affordable Web Design in Crewe — Professional Sites from £100

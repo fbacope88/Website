@@ -49,6 +49,7 @@ function buildHtmlPage({
   keywords,
   date,
   author,
+  image,
   bodyHtml,
   isIndex,
 }: {
@@ -58,10 +59,12 @@ function buildHtmlPage({
   keywords: string[];
   date?: string;
   author?: string;
+  image?: string;
   bodyHtml: string;
   isIndex: boolean;
 }): string {
   const canonicalUrl = isIndex ? `${SITE_URL}/blog` : `${SITE_URL}/blog/${slug}`;
+  const ogImage = image ? `${SITE_URL}${image}` : `${SITE_URL}/assets/logo.png`;
   const jsonLd = isIndex
     ? JSON.stringify({
         "@context": "https://schema.org",
@@ -76,6 +79,7 @@ function buildHtmlPage({
         "@type": "BlogPosting",
         headline: title,
         description,
+        image: ogImage,
         url: canonicalUrl,
         datePublished: date,
         dateModified: date,
@@ -100,11 +104,13 @@ function buildHtmlPage({
   <meta property="og:description" content="${description}" />
   <meta property="og:url" content="${canonicalUrl}" />
   <meta property="og:site_name" content="${BRAND}" />
-  <meta property="og:image" content="${SITE_URL}/assets/logo.png" />
+  <meta property="og:image" content="${ogImage}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${title}" />
   <meta name="twitter:description" content="${description}" />
-  <meta name="twitter:image" content="${SITE_URL}/assets/logo.png" />
+  <meta name="twitter:image" content="${ogImage}" />
   ${date ? `<meta property="article:published_time" content="${date}" />` : ""}
   <script type="application/ld+json">${jsonLd}</script>
   <style>
@@ -152,6 +158,10 @@ function buildHtmlPage({
     .post-card p { color: #6b7280; font-size: 0.95rem; margin-bottom: 1rem; }
     .post-card .read-more { color: var(--blue); font-weight: 600; font-size: 0.9rem; }
 
+    /* Hero image */
+    .post-hero { width: 100%; max-width: 800px; margin: 0 auto; display: block; border-radius: 0 0 1rem 1rem; overflow: hidden; }
+    .post-hero img { width: 100%; height: auto; display: block; object-fit: cover; }
+
     /* CTA box */
     .cta-box { background: #EEF4FF; border-radius: 1rem; padding: 2rem; margin-top: 3rem; border: 1px solid #c7d9ff; }
     .cta-box h3 { color: var(--dark); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
@@ -189,6 +199,11 @@ function buildHtmlPage({
       ${!isIndex ? `<div class="excerpt">${description}</div>` : ""}
     </div>
   </div>
+
+  ${!isIndex && image ? `
+  <div class="post-hero">
+    <img src="${image}" alt="${title} - ${BRAND}" width="1200" height="675" loading="eager" />
+  </div>` : ""}
 
   <div class="article-wrap">
     ${bodyHtml}
@@ -272,6 +287,7 @@ router.get("/blog/:slug", (req, res) => {
     keywords: (data.keywords as string[]) || [],
     date: data.date as string,
     author: data.author as string,
+    image: data.image as string | undefined,
     bodyHtml,
     isIndex: false,
   });
