@@ -1,29 +1,13 @@
 {
   "version": 2,
-  "buildCommand": "pnpm --filter @workspace/api-server run build && pnpm --filter @workspace/creative-web-studio run build",
-  "outputDirectory": "artifacts/creative-web-studio/dist/public",
-  "functions": {
-    "artifacts/api-server/dist/index.mjs": {
-      "runtime": "nodejs22.x",
-      "maxDuration": 30
+  "buildCommand": "pnpm --filter @workspace/creative-web-studio run build && pnpm --filter @workspace/api-server run build",
+  "builds": [
+    {
+      "src": "artifacts/api-server/dist/index.mjs",
+      "use": "@vercel/node"
     }
-  },
-  "rewrites": [
-    {
-      "source": "/api/:path*",
-      "destination": "/artifacts/api-server/dist/index.mjs"
-    },
-    {
-      "source": "/blog/:slug",
-      "destination": "/artifacts/api-server/dist/index.mjs"
-    },
-    {
-      "source": "/blog",
-      "destination": "/artifacts/api-server/dist/index.mjs"
-    },
-    {
-      "source": "/((?!assets|favicon).*)",
-      "destination": "/index.html"
-    }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "artifacts/api-server/dist/index.mjs" }
   ]
 }
