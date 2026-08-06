@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mark } from "@/components/Mark";
+import { HeroIntro } from "@/components/HeroIntro";
 
 const SITE_URL = import.meta.env.VITE_SITE_URL ?? "";
 
@@ -81,116 +82,16 @@ function Navbar() {
 }
 
 /* ==========================================================================
-   Hero — huge centered type, minimal text-link CTAs, scroll + cursor 3D tilt
-   on a generic browser mockup (no invented client claims).
+   Hero — animated wireframe-build intro that resolves into huge centered
+   type with minimal text-link CTAs.
    ========================================================================== */
 function Hero() {
-  const mockRef = useRef<HTMLDivElement>(null);
-  const tiltRef = useRef({ mx: 0, my: 0 });
-
-  useEffect(() => {
-    const el = mockRef.current;
-    if (!el) return;
-
-    function apply() {
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const progress = Math.min(Math.max((vh - rect.top) / (vh + rect.height), 0), 1);
-      const scrollTilt = (0.5 - progress) * 12;
-      el.style.transform = `rotateX(${scrollTilt + tiltRef.current.mx}deg) rotateY(${tiltRef.current.my}deg) scale(${1 - Math.abs(0.5 - progress) * 0.05})`;
-    }
-
-    function onScroll() { requestAnimationFrame(apply); }
-    function onMove(e: MouseEvent) {
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const px = (e.clientX - (rect.left + rect.width / 2)) / rect.width;
-      const py = (e.clientY - (rect.top + rect.height / 2)) / rect.height;
-      tiltRef.current = { mx: -py * 5, my: px * 7 };
-      apply();
-    }
-    function onLeave() { tiltRef.current = { mx: 0, my: 0 }; apply(); }
-
-    const section = document.getElementById("hero");
-    window.addEventListener("scroll", onScroll, { passive: true });
-    section?.addEventListener("mousemove", onMove);
-    section?.addEventListener("mouseleave", onLeave);
-    const t = setTimeout(apply, 900);
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      section?.removeEventListener("mousemove", onMove);
-      section?.removeEventListener("mouseleave", onLeave);
-      clearTimeout(t);
-    };
-  }, []);
-
   return (
-    <section id="hero" className="relative pt-40 pb-24 px-6 text-center bg-black text-[#f5f5f7] overflow-hidden">
-      <motion.h1
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="text-[40px] sm:text-6xl lg:text-[80px] font-bold leading-[1.04] tracking-tight max-w-4xl mx-auto text-balance"
-        data-testid="heading-hero"
-      >
-        A website worthy of your business.
-      </motion.h1>
-      <motion.p
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-        className="mt-5 text-lg sm:text-xl text-[#98989d] max-w-xl mx-auto"
-      >
-        Designed properly, built fast, live in 48&ndash;72 hours &mdash; from &pound;199.
-      </motion.p>
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-        className="mt-7 flex justify-center gap-7 text-lg"
-      >
-        <button onClick={() => scrollToId("contact")} className="text-[#2997ff] hover:underline" data-testid="link-hero-quote">
-          Get a quote &rsaquo;
-        </button>
-        <button onClick={() => scrollToId("packages")} className="text-[#2997ff] hover:underline" data-testid="link-hero-packages">
-          See packages &rsaquo;
-        </button>
-      </motion.div>
-
-      <div className="mt-16 max-w-3xl mx-auto" style={{ perspective: "1400px" }}>
-        <div
-          ref={mockRef}
-          className="rounded-2xl overflow-hidden border border-white/10 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.8)]"
-          style={{ transformStyle: "preserve-3d", willChange: "transform" }}
-          data-testid="hero-mockup"
-        >
-          <div className="flex items-center gap-1.5 px-4 py-2.5 bg-[#121214] border-b border-white/10">
-            <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
-            <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
-            <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
-            <span className="mx-auto text-[11px] text-[#98989d] bg-black rounded-full px-4 py-0.5">yourbusiness.co.uk</span>
-          </div>
-          <div className="grid sm:grid-cols-2 bg-[#0a0a0b] text-left">
-            <div className="p-8 sm:p-10 flex flex-col justify-center gap-3">
-              <p className="text-[11px] uppercase tracking-wider text-[#2997ff] font-semibold">Your Business Name</p>
-              <p className="text-lg sm:text-xl font-bold leading-snug">A short, clear headline about what you do.</p>
-              <p className="text-[13px] text-[#98989d] max-w-[24ch]">One line explaining why customers should choose you.</p>
-              <span className="mt-1 inline-block w-fit text-[12px] font-semibold bg-[#2997ff] text-black rounded-md px-4 py-2">Get in touch</span>
-            </div>
-            <div className="min-h-[180px] relative overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1750056393331-82e69d28c9d9?w=1200&q=80&auto=format&fit=crop"
-                alt="Laptop open on a desk, showing a website being built"
-                className="absolute inset-0 w-full h-full object-cover grayscale-[35%] contrast-[1.08] brightness-[0.85]"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-            </div>
-          </div>
-        </div>
-      </div>
+    <section id="hero" className="relative pt-40 pb-32 px-6 text-center bg-black text-[#f5f5f7] overflow-hidden">
+      <HeroIntro
+        onQuote={() => scrollToId("contact")}
+        onPackages={() => scrollToId("packages")}
+      />
     </section>
   );
 }

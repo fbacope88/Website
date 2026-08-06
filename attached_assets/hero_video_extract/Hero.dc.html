@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <script src="./image-slot.js"></script>
+  <script type="text/babel" src="./hero-scenes.jsx"></script>
+  <script>window.OM_SCENES = '[{"name":"WireframeBuild","dur":1.8},{"name":"DesignElements","dur":1.8},{"name":"ContentFill","dur":1.8},{"name":"CameraPullBack","dur":2.2},{"name":"HoldReset","dur":2.2}]';</script>
+  <script>window.OM_PLAYBACK = '{"mode":"times","count":1}';</script>
+  <script>window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{"motionEditor":true}/*EDITMODE-END*/;</script>
+</helmet>
+<div style="width:100%;height:100%;background:#000000;display:flex;align-items:center;justify-content:center;position:relative">
+  <div style="position:absolute;width:0;height:0;overflow:hidden">
+    <x-import component-from-global-scope="SceneStage" from="./animations-v2.jsx" hint-size="0,0"></x-import>
+    <x-import component-from-global-scope="TweaksPanel" from="./tweaks-panel.jsx" hint-size="0,0"></x-import>
+  </div>
+  <div style="width:100%;max-width:1920px;aspect-ratio:16/9;position:relative">
+    <sc-if value="{{ stageReady }}" hint-placeholder-val="{{ false }}">
+      <x-import component-from-global-scope="HeroStage" from="./hero-scenes.jsx" hint-size="100%,100%"></x-import>
+    </sc-if>
+  </div>
+  <sc-if value="{{ tweaksReady }}" hint-placeholder-val="{{ false }}">
+    <x-import component-from-global-scope="HeroTweaksPanel" from="./hero-scenes.jsx" hint-size="0,0"></x-import>
+  </sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { tweaksReady: !!window.useTweaks, stageReady: !!window.SceneStage };
+  componentDidMount() {
+    if (this.state.tweaksReady && this.state.stageReady) return;
+    this._poll = setInterval(() => {
+      const tweaksReady = !!window.useTweaks, stageReady = !!window.SceneStage;
+      if (tweaksReady !== this.state.tweaksReady || stageReady !== this.state.stageReady) {
+        this.setState({ tweaksReady, stageReady });
+      }
+      if (tweaksReady && stageReady) clearInterval(this._poll);
+    }, 50);
+  }
+  componentWillUnmount() {
+    clearInterval(this._poll);
+  }
+  renderVals() {
+    return { tweaksReady: this.state.tweaksReady, stageReady: this.state.stageReady };
+  }
+}
+
+</script>
+</body>
+</html>
