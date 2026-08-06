@@ -1,0 +1,39 @@
+# Creative Web Studio Experts
+
+> Professional web design and development agency helping businesses establish a compelling online presence. We build fast, modern, mobile-friendly websites tailored to each client's brand and goals.
+
+## About
+
+Creative Web Studio Experts is a UK-based web design agency specialising in bespoke website design, development, SEO optimisation, and ongoing website maintenance. Our team creates high-converting websites for small and medium-sized businesses across all industries.
+
+## Target Audience
+
+- Small and medium-sized businesses seeking a professional online presence
+- Entrepreneurs and startups launching a new brand or product
+- Existing businesses looking to redesign or modernise their website
+- Companies wanting to improve their search engine visibility and lead generation
+
+## Primary Services
+
+- Custom website design and development
+- Mobile-responsive and performance-optimised websites
+- SEO setup and on-page optimisation
+- Website maintenance and support packages
+- E-commerce website development
+
+## Priority Pages
+
+- Homepage (services overview, pricing, testimonials, contact): https://www.creativeweb.studio/
+- Privacy Policy: https://www.creativeweb.studio/privacy-policy
+- Terms of Service: https://www.creativeweb.studio/terms-of-service
+
+## Contact
+
+- WhatsApp: https://wa.me/447907313846
+
+## Exclusions
+
+The following URLs exist as utility pages and are not intended for indexing or citation:
+
+- /payment-success — post-checkout confirmation page, no standalone informational value
+- /payment-cancel — post-checkout cancellation page, no standalone informational value
