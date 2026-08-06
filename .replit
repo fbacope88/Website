@@ -1,4 +1,4 @@
-modules = ["nodejs-24"]
+modules = ["nodejs-24", "python-base-3.13"]
 
 [deployment]
 router = "application"
@@ -24,3 +24,4 @@ timeoutMs = 20000
 [userenv.shared]
 MAKE_WEBHOOK_URL = "https://hook.eu2.make.com/hn6idmtz992pb6v96n6oa516edczrew6"
 EMAIL_USER = "creativewebstudioexpert@gmail.com"
+VITE_SITE_URL = "https://creativewebstudioexpert.co.uk"

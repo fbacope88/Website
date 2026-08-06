@@ -23,9 +23,10 @@ Creative Web Studio Experts is a UK-based web design agency specialising in besp
 
 ## Priority Pages
 
-- Homepage (services overview, pricing, testimonials, contact): https://www.creativeweb.studio/
-- Privacy Policy: https://www.creativeweb.studio/privacy-policy
-- Terms of Service: https://www.creativeweb.studio/terms-of-service
+- Homepage (services overview, pricing, process, FAQ, contact): https://creativewebstudioexpert.co.uk/
+- Blog: https://creativewebstudioexpert.co.uk/blog
+- Privacy Policy: https://creativewebstudioexpert.co.uk/privacy-policy
+- Terms of Service: https://creativewebstudioexpert.co.uk/terms-of-service
 
 ## Contact
 

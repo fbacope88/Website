@@ -30,7 +30,7 @@ A website built on a free platform with generic templates does the opposite. It 
 
 One of the biggest myths holding small businesses back is the belief that a great website costs £2,000–£5,000. It doesn't.
 
-At Creative Web Studio Experts, our **Basic package starts from just £100** and delivers a fully responsive, mobile-optimised, SEO-ready website — built to the same standard as agencies charging ten times the price.
+At Creative Web Studio Experts, our **Basic package starts from just £199** and delivers a fully responsive, mobile-optimised, SEO-ready website — built to the same standard as agencies charging ten times the price.
 
 We've built websites for:
 

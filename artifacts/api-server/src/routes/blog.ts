@@ -115,63 +115,62 @@ function buildHtmlPage({
   <script type="application/ld+json">${jsonLd}</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --blue: #0066FF; --dark: #1a1a2e; --gray: #6b7280; --light: #f9fafb; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #374151; line-height: 1.75; background: #fff; }
+    :root { --blue: #2997ff; --ink: #f5f5f7; --ink-soft: #98989d; --bg: #000; --bg-alt: #121214; --line: rgba(255,255,255,0.1); }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: var(--ink); line-height: 1.75; background: var(--bg); }
     a { color: var(--blue); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
     /* Nav */
-    .nav { background: var(--dark); padding: 0 1.5rem; position: sticky; top: 0; z-index: 100; }
+    .nav { background: var(--bg-alt); border-bottom: 1px solid var(--line); padding: 0 1.5rem; position: sticky; top: 0; z-index: 100; }
     .nav-inner { max-width: 800px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 60px; }
-    .nav-brand { color: #fff; font-weight: 700; font-size: 1rem; }
+    .nav-brand { color: var(--ink); font-weight: 700; font-size: 1rem; }
     .nav-links { display: flex; gap: 1.5rem; }
-    .nav-links a { color: #9ca3af; font-size: 0.9rem; }
-    .nav-links a:hover { color: #fff; text-decoration: none; }
+    .nav-links a { color: var(--ink-soft); font-size: 0.9rem; }
+    .nav-links a:hover { color: var(--ink); text-decoration: none; }
 
     /* Hero band */
-    .hero-band { background: var(--dark); padding: 3rem 1.5rem 3.5rem; }
+    .hero-band { background: var(--bg-alt); border-bottom: 1px solid var(--line); padding: 3rem 1.5rem 3.5rem; }
     .hero-band .inner { max-width: 800px; margin: 0 auto; }
-    .hero-band .label { color: var(--blue); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; }
-    .hero-band h1 { color: #fff; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; line-height: 1.2; margin-bottom: 1rem; }
-    .hero-band .meta { color: #9ca3af; font-size: 0.875rem; }
-    .hero-band .excerpt { color: #d1d5db; font-size: 1.05rem; margin-top: 0.75rem; max-width: 640px; }
+    .hero-band h1 { color: var(--ink); font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; line-height: 1.2; margin-bottom: 1rem; }
+    .hero-band .meta { color: var(--ink-soft); font-size: 0.875rem; }
+    .hero-band .excerpt { color: var(--ink-soft); font-size: 1.05rem; margin-top: 0.75rem; max-width: 640px; }
 
     /* Article */
     .article-wrap { max-width: 800px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
     .article-wrap h1 { display: none; }
-    .article-wrap h2 { font-size: 1.4rem; font-weight: 700; color: var(--dark); margin: 2.5rem 0 0.75rem; }
-    .article-wrap h3 { font-size: 1.15rem; font-weight: 600; color: var(--dark); margin: 1.75rem 0 0.5rem; }
-    .article-wrap p { margin-bottom: 1.25rem; }
+    .article-wrap h2 { font-size: 1.4rem; font-weight: 700; color: var(--ink); margin: 2.5rem 0 0.75rem; }
+    .article-wrap h3 { font-size: 1.15rem; font-weight: 600; color: var(--ink); margin: 1.75rem 0 0.5rem; }
+    .article-wrap p { margin-bottom: 1.25rem; color: var(--ink); }
     .article-wrap ul, .article-wrap ol { padding-left: 1.5rem; margin-bottom: 1.25rem; }
     .article-wrap li { margin-bottom: 0.4rem; }
-    .article-wrap strong { color: var(--dark); }
-    .article-wrap hr { border: none; border-top: 1px solid #e5e7eb; margin: 2rem 0; }
+    .article-wrap strong { color: var(--ink); }
+    .article-wrap hr { border: none; border-top: 1px solid var(--line); margin: 2rem 0; }
     .article-wrap a { color: var(--blue); font-weight: 500; }
     .article-wrap a:hover { text-decoration: underline; }
 
     /* Blog index cards */
-    .blog-grid { display: grid; gap: 2rem; margin-top: 2rem; }
-    .post-card { border: 1px solid #e5e7eb; border-radius: 1rem; padding: 1.75rem; transition: border-color 0.2s, box-shadow 0.2s; }
-    .post-card:hover { border-color: var(--blue); box-shadow: 0 4px 20px rgba(0,102,255,0.1); text-decoration: none; }
-    .post-card .date { color: var(--gray); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.5rem; }
-    .post-card h2 { font-size: 1.2rem; font-weight: 700; color: var(--dark); margin-bottom: 0.6rem; }
-    .post-card p { color: #6b7280; font-size: 0.95rem; margin-bottom: 1rem; }
+    .blog-grid { display: grid; gap: 1.25rem; margin-top: 2rem; }
+    .post-card { background: var(--bg-alt); border: 1px solid var(--line); border-radius: 0.75rem; padding: 1.75rem; transition: border-color 0.2s; }
+    .post-card:hover { border-color: color-mix(in srgb, var(--blue) 50%, transparent); text-decoration: none; }
+    .post-card .date { color: var(--ink-soft); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .post-card h2 { font-size: 1.2rem; font-weight: 700; color: var(--ink); margin-bottom: 0.6rem; }
+    .post-card p { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 1rem; }
     .post-card .read-more { color: var(--blue); font-weight: 600; font-size: 0.9rem; }
 
     /* Hero image */
-    .post-hero { width: 100%; max-width: 800px; margin: 0 auto; display: block; border-radius: 0 0 1rem 1rem; overflow: hidden; }
+    .post-hero { width: 100%; max-width: 800px; margin: 0 auto; display: block; border-radius: 0 0 0.75rem 0.75rem; overflow: hidden; }
     .post-hero img { width: 100%; height: auto; display: block; object-fit: cover; }
 
     /* CTA box */
-    .cta-box { background: #EEF4FF; border-radius: 1rem; padding: 2rem; margin-top: 3rem; border: 1px solid #c7d9ff; }
-    .cta-box h3 { color: var(--dark); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .cta-box p { color: #4b5563; margin-bottom: 1rem; font-size: 0.95rem; }
-    .cta-btn { display: inline-block; background: var(--blue); color: #fff !important; font-weight: 700; padding: 0.7rem 1.5rem; border-radius: 0.6rem; font-size: 0.95rem; }
-    .cta-btn:hover { background: #0052cc; text-decoration: none; }
+    .cta-box { background: var(--bg-alt); border-radius: 0.75rem; padding: 2rem; margin-top: 3rem; border: 1px solid var(--line); }
+    .cta-box h3 { color: var(--ink); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .cta-box p { color: var(--ink-soft); margin-bottom: 1rem; font-size: 0.95rem; }
+    .cta-btn { display: inline-block; background: var(--blue); color: #000 !important; font-weight: 700; padding: 0.7rem 1.5rem; border-radius: 0.5rem; font-size: 0.95rem; }
+    .cta-btn:hover { filter: brightness(1.1); text-decoration: none; }
 
     /* Footer */
-    .footer { background: var(--dark); color: #6b7280; text-align: center; padding: 1.5rem; font-size: 0.85rem; }
-    .footer a { color: #9ca3af; }
+    .footer { background: var(--bg-alt); border-top: 1px solid var(--line); color: var(--ink-soft); text-align: center; padding: 1.5rem; font-size: 0.85rem; }
+    .footer a { color: var(--ink-soft); }
 
     @media (max-width: 640px) {
       .nav-links { gap: 1rem; }
@@ -184,8 +183,7 @@ function buildHtmlPage({
       <a class="nav-brand" href="/">${BRAND}</a>
       <div class="nav-links">
         <a href="/blog">Blog</a>
-        <a href="/#services">Services</a>
-        <a href="/#pricing">Pricing</a>
+        <a href="/#packages">Packages</a>
         <a href="/#contact">Contact</a>
       </div>
     </div>
@@ -193,7 +191,6 @@ function buildHtmlPage({
 
   <div class="hero-band">
     <div class="inner">
-      <div class="label">${isIndex ? "Blog" : "Article"}</div>
       <h1>${title}</h1>
       ${date ? `<div class="meta">Published ${new Date(date).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })} &bull; ${BRAND}</div>` : ""}
       ${!isIndex ? `<div class="excerpt">${description}</div>` : ""}
@@ -211,7 +208,7 @@ function buildHtmlPage({
     ${!isIndex ? `
     <div class="cta-box">
       <h3>Ready to get your business online?</h3>
-      <p>Professional websites from just £100 — live in as little as 48–72 hours. No hidden fees, no long contracts.</p>
+      <p>Professional websites from just £199 — live in as little as 48–72 hours. No hidden fees, no long contracts.</p>
       <a class="cta-btn" href="/#contact">Get a Free Quote</a>
     </div>
     ` : ""}
@@ -229,6 +226,36 @@ function buildHtmlPage({
 router.get("/api/blog", (_req, res) => {
   const posts = getAllPosts();
   res.json(posts);
+});
+
+router.get("/api/blog/:slug", (req, res) => {
+  const { slug } = req.params;
+  const files = readdirSync(POSTS_DIR).filter((f) => f.endsWith(".md"));
+  const file = files.find((f) => {
+    const raw = readFileSync(join(POSTS_DIR, f), "utf-8");
+    const { data } = matter(raw);
+    return data.slug === slug;
+  });
+
+  if (!file) {
+    res.status(404).json({ error: "Post not found" });
+    return;
+  }
+
+  const raw = readFileSync(join(POSTS_DIR, file), "utf-8");
+  const { data, content } = matter(raw);
+  const bodyHtml = marked(content) as string;
+
+  res.json({
+    title: data.title as string,
+    slug: data.slug as string,
+    date: data.date as string,
+    excerpt: data.excerpt as string,
+    keywords: (data.keywords as string[]) || [],
+    author: (data.author as string) || BRAND,
+    image: data.image as string | undefined,
+    bodyHtml,
+  });
 });
 
 router.get("/blog", (_req, res) => {

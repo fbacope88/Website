@@ -7,13 +7,13 @@ const router = Router();
 const stripe = new Stripe(process.env["STRIPE_SECRET_KEY1"] ?? "");
 
 const PLANS = {
-  basic: { name: "Basic Web Design Package", amount: 10000 },
-  professional: { name: "Professional Web Design Package", amount: 20000 },
-  ecommerce: { name: "E-Commerce Web Design Package", amount: 99900 },
+  basic: { name: "Basic Web Design Package", amount: 19900 },
+  professional: { name: "Professional Web Design Package", amount: 39900 },
+  ecommerce: { name: "E-Commerce Web Design Package", amount: 59900 },
 } as const;
 
-async function notifyMake(data: Record<string, unknown>) {
-  const url = process.env["MAKE_WEBHOOK_URL"];
+async function notifyMakePayment(data: Record<string, unknown>) {
+  const url = process.env["MAKE_WEBHOOK_PAYMENT_URL"];
   if (!url) return;
   try {
     await fetch(url, {
@@ -22,12 +22,12 @@ async function notifyMake(data: Record<string, unknown>) {
       body: JSON.stringify(data),
     });
   } catch (err) {
-    logger.error({ err }, "Failed to notify Make.com");
+    logger.error({ err }, "Failed to notify Make.com payment webhook");
   }
 }
 
 router.post("/checkout", async (req, res) => {
-  const { plan } = req.body as { plan: string };
+  const { plan, name, email } = req.body as { plan: string; name?: string; email?: string };
   const planData = PLANS[plan as keyof typeof PLANS];
 
   if (!planData) {
@@ -57,8 +57,10 @@ router.post("/checkout", async (req, res) => {
       cancel_url: `${baseUrl}/payment-cancel`,
     });
 
-    await notifyMake({
+    await notifyMakePayment({
       event: "payment_initiated",
+      name: name ?? "",
+      email: email ?? "",
       plan,
       amount: planData.amount / 100,
       currency: "GBP",

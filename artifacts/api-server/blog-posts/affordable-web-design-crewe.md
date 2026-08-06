@@ -1,18 +1,18 @@
 ---
-title: "Affordable Web Design in Crewe — Professional Sites from £100"
+title: "Affordable Web Design in Crewe — Professional Sites from £199"
 slug: "affordable-web-design-crewe"
 date: "2025-06-28"
-excerpt: "Looking for affordable web design in Crewe? Get a professionally designed, mobile-ready website from just £100. Fast turnaround, no hidden fees, and built to convert visitors into customers."
-keywords: ["affordable web design Crewe", "web design Crewe", "cheap website design Crewe", "small business website Crewe", "professional website design Crewe", "£100 website design", "web design agency Crewe"]
+excerpt: "Looking for affordable web design in Crewe? Get a professionally designed, mobile-ready website from just £199. Fast turnaround, no hidden fees, and built to convert visitors into customers."
+keywords: ["affordable web design Crewe", "web design Crewe", "cheap website design Crewe", "small business website Crewe", "professional website design Crewe", "£199 website design", "web design agency Crewe"]
 author: "Creative Web Studio Experts"
 image: "/assets/blog-hero-crewe.png"
 ---
 
-# Affordable Web Design in Crewe — Professional Sites from £100
+# Affordable Web Design in Crewe — Professional Sites from £199
 
 If you run a small business in Crewe and you've been putting off getting a website because of cost, this post is for you.
 
-Professional web design doesn't have to cost thousands. At Creative Web Studio Experts, we build fully custom, mobile-ready, SEO-optimised websites for Crewe businesses **starting from just £100** — and most go live within 48 to 72 hours.
+Professional web design doesn't have to cost thousands. At Creative Web Studio Experts, we build fully custom, mobile-ready, SEO-optimised websites for Crewe businesses **starting from just £199** — and most go live within 48 to 72 hours.
 
 In this post, we'll cover exactly what you get, how the process works, why Crewe businesses should care, and we'll address the most common questions and concerns head on.
 
@@ -41,11 +41,11 @@ We're here to change that.
 
 ---
 
-## What Do You Actually Get for £100?
+## What Do You Actually Get for £199?
 
 Let's be completely transparent about this — because you deserve to know exactly what you're paying for before you commit to anything.
 
-Our **Basic package at £100** includes:
+Our **Basic package at £199** includes:
 
 ### A Fully Custom, Professional Design
 
@@ -137,7 +137,7 @@ We hear the same concerns from business owners regularly. Let's address them hon
 
 ### "Cheap web design means bad quality"
 
-Not if you know who you're dealing with. The cost difference between a £100 website and a £2,000 website from a traditional agency isn't usually about quality — it's about overheads, account managers, lengthy project timelines, and in some cases, pure margin.
+Not if you know who you're dealing with. The cost difference between a £199 website and a £2,000 website from a traditional agency isn't usually about quality — it's about overheads, account managers, lengthy project timelines, and in some cases, pure margin.
 
 We've stripped all of that out. Our process is lean, our team is experienced, and our output speaks for itself. Look at the sites we've built for [LNA Car Sales](https://lnacarsales.co.uk), [Fresh Buys Ltd](https://freshbuysltd.co.uk), and [Amazon FBA](https://myfreshbuys.co.uk). These aren't cut-price designs — they're professional, high-quality websites.
 
@@ -150,11 +150,11 @@ You can, and for some businesses that's fine. But website builders have signific
 - You'll spend hours of your own time trying to make it look right
 - The result rarely looks as polished as a custom-designed site
 
-Your time is worth money. If you're spending 10 hours building a Wix site that ends up looking mediocre, you've already lost more than £100 in productivity.
+Your time is worth money. If you're spending 10 hours building a Wix site that ends up looking mediocre, you've already lost more than £199 in productivity.
 
 ### "I don't have the budget right now"
 
-We understand. That's precisely why our Basic package starts at £100. It's designed to give you a professional online presence at a price that doesn't require you to take a financial risk.
+We understand. That's precisely why our Basic package starts at £199. It's designed to give you a professional online presence at a price that doesn't require you to take a financial risk.
 
 And if your business grows and you need more — more pages, e-commerce functionality, animations, a blog — we have packages that scale with you.
 
@@ -182,7 +182,7 @@ A brief description of your business, any existing branding (logo, colours), and
 
 ### Is this a one-off payment or a subscription?
 
-The £100 is a one-off payment for the website design and build. Hosting and domain registration (if required) are separate costs, but we'll advise you on the most affordable options for your needs.
+The £199 is a one-off payment for the website design and build. Hosting and domain registration (if required) are separate costs, but we'll advise you on the most affordable options for your needs.
 
 ### Can I upgrade later if I need more features?
 
@@ -202,7 +202,7 @@ Not at all — we work with businesses across the UK. But we have a particular i
 
 If you run a business in Crewe — or anywhere in the UK — and you've been waiting for the right moment to invest in a professional website, this is it.
 
-For £100, you'll get a custom-designed, mobile-ready, SEO-optimised website that gives your business the online presence it deserves. No templates, no hidden fees, no endless waiting around.
+For £199, you'll get a custom-designed, mobile-ready, SEO-optimised website that gives your business the online presence it deserves. No templates, no hidden fees, no endless waiting around.
 
 Most sites go live within 72 hours.
 

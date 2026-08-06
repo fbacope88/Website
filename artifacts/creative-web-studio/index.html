@@ -16,7 +16,7 @@
           "@type": "ProfessionalService",
           "@id": "%VITE_SITE_URL%/#business",
           "name": "Creative Web Studio Experts",
-          "description": "UK-based premium web design agency delivering high-converting, stunning websites starting from £100. Custom website design, SEO-friendly development, and expert solutions tailored to your brand.",
+          "description": "UK-based premium web design agency delivering high-converting, stunning websites starting from £199. Custom website design, SEO-friendly development, and expert solutions tailored to your brand.",
           "url": "%VITE_SITE_URL%/",
           "email": "creativewebstudioexpert@gmail.com",
           "telephone": "+447907313846",
@@ -38,22 +38,22 @@
               {
                 "@type": "Offer",
                 "name": "Basic Website",
-                "description": "3-page responsive website with contact forms, advanced SEO setup, social media links, and 48–72 hour delivery.",
-                "price": "100",
+                "description": "Single-page, mobile-ready website with a contact form and core SEO setup, live in 48 hours.",
+                "price": "199",
                 "priceCurrency": "GBP"
               },
               {
                 "@type": "Offer",
                 "name": "Professional Website",
-                "description": "Up to 6-page website with premium animations, blog/news section, Google Analytics integration, and 2 weeks free support.",
-                "price": "200",
+                "description": "Multi-page website (up to 6 pages) with a blog/news section and analytics set up, live in 72 hours.",
+                "price": "399",
                 "priceCurrency": "GBP"
               },
               {
                 "@type": "Offer",
                 "name": "E-Commerce Website",
-                "description": "Full online store with payment gateway setup, CMS and inventory management, analytics integration, and 1 month free support.",
-                "price": "999",
+                "description": "Full online store with Stripe payments and stock/order management, live in 5–7 days.",
+                "price": "599",
                 "priceCurrency": "GBP"
               }
             ]
@@ -71,6 +71,21 @@
         }
       ]
     }
+    </script>
+    <script>
+      (function () {
+        var id = "%VITE_GA_MEASUREMENT_ID%";
+        if (!id || id.indexOf("%") === 0) return;
+        var s = document.createElement("script");
+        s.async = true;
+        s.src = "https://www.googletagmanager.com/gtag/js?id=" + id;
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { window.dataLayer.push(arguments); }
+        window.gtag = gtag;
+        gtag("js", new Date());
+        gtag("config", id);
+      })();
     </script>
   </head>
   <body>

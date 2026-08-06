@@ -1,7 +1,7 @@
 import { build } from "vite";
 import { readFileSync, writeFileSync, mkdirSync } from "fs";
 import { join, dirname } from "path";
-import { fileURLToPath } from "url";
+import { fileURLToPath, pathToFileURL } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const SITE_URL = process.env.VITE_SITE_URL ?? "";
@@ -119,10 +119,21 @@ await build({
   logLevel: "warn",
 });
 
-const { render } = await import(join(__dirname, "dist/server/entry-server.js"));
+const { render } = await import(pathToFileURL(join(__dirname, "dist/server/entry-server.js")).href);
 
 const templatePath = join(__dirname, "dist/public/index.html");
 const template = readFileSync(templatePath, "utf-8");
+
+// react-helmet-async@3 predates React 19's internal changes and, under
+// renderToString with no real <head> in the render tree, leaks its
+// title/meta tags inline into the body instead of suppressing them.
+// This route's own <head> (built above from route config) is always the
+// authoritative one, so strip any of those leaked tags from the SSR output.
+function stripLeakedHeadTags(html) {
+  return html
+    .replace(/<title>.*?<\/title>/gs, "")
+    .replace(/<meta\s+(?:name="(?:description|robots|twitter:[\w-]+)"|property="og:[\w-]+")[^>]*\/?>/g, "");
+}
 
 for (const route of routes) {
   const headHtml = buildHeadHtml(route);
@@ -130,7 +141,7 @@ for (const route of routes) {
   let appHtml = "";
   try {
     const result = render(route.path);
-    appHtml = result.html;
+    appHtml = stripLeakedHeadTags(result.html);
   } catch (err) {
     console.error(`SSR render failed for ${route.path}:`, err.message);
   }

@@ -91,6 +91,6 @@ This isn't just about writing blog posts — it starts with the technical founda
 
 If your website is showing any of these warning signs, every day you wait is costing you customers. The good news is that it doesn't take long — or a lot of money — to put it right.
 
-At Creative Web Studio Experts, we build high-converting, professionally designed websites [starting from just £100](/pricing). Most projects go live within 72 hours.
+At Creative Web Studio Experts, we build high-converting, professionally designed websites [starting from just £199](/pricing). Most projects go live within 72 hours.
 
 [Get in touch today](/contact) and let's talk about how we can transform your online presence.

@@ -52,9 +52,9 @@ export default function TermsOfService() {
           <h2 className="text-xl font-bold text-[#1a1a2e] mb-3">2. Services</h2>
           <p>We provide professional web design and development services, including but not limited to:</p>
           <ul className="list-disc list-inside mt-3 space-y-2">
-            <li>Basic website design (from £100)</li>
-            <li>Professional website design (from £200)</li>
-            <li>E-Commerce website design (from £999)</li>
+            <li>Basic website design (from £199)</li>
+            <li>Professional website design (from £399)</li>
+            <li>E-Commerce website design (from £599)</li>
             <li>Website revisions and updates</li>
           </ul>
           <p className="mt-3">
