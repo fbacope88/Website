@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { readFileSync, readdirSync } from "fs";
+import { existsSync, readFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import matter from "gray-matter";
@@ -11,7 +11,20 @@ const __dirname = dirname(__filename);
 
 const router = Router();
 
-const POSTS_DIR = join(__dirname, "../blog-posts");
+// The esbuild bundle lives in dist/, so posts are ../blog-posts.
+// Vercel compiles this file under src/routes (../../blog-posts) or runs with
+// the repo root as cwd. includeFiles in vercel.json ships the markdown.
+function resolvePostsDir(): string {
+  const candidates = [
+    join(__dirname, "../blog-posts"),
+    join(__dirname, "../../blog-posts"),
+    join(process.cwd(), "artifacts/api-server/blog-posts"),
+    join(process.cwd(), "blog-posts"),
+  ];
+  return candidates.find((dir) => existsSync(dir)) ?? candidates[0];
+}
+
+const POSTS_DIR = resolvePostsDir();
 
 const SITE_URL = resolveSiteUrl();
 const BRAND = "Creative Web Studio Experts";

@@ -10,16 +10,13 @@ globalThis.require = createRequire(import.meta.url);
 
 const artifactDir = path.dirname(fileURLToPath(import.meta.url));
 
-async function buildAll() {
-  const distDir = path.resolve(artifactDir, "dist");
-  await rm(distDir, { recursive: true, force: true });
-
+async function bundle(entry) {
   await esbuild({
-    entryPoints: [path.resolve(artifactDir, "src/index.ts")],
+    entryPoints: [path.resolve(artifactDir, entry)],
     platform: "node",
     bundle: true,
     format: "esm",
-    outdir: distDir,
+    outdir: path.resolve(artifactDir, "dist"),
     outExtension: { ".js": ".mjs" },
     logLevel: "info",
     // Some packages may not be bundleable, so we externalize them, we can add more here as needed.
@@ -118,6 +115,26 @@ globalThis.__dirname = __bannerPath.dirname(globalThis.__filename);
     `,
     },
   });
+}
+
+async function buildAll() {
+  const mode = process.argv[2] ?? "server";
+  const distDir = path.resolve(artifactDir, "dist");
+
+  if (mode === "server") {
+    await rm(distDir, { recursive: true, force: true });
+    // Long-running process used by Docker and `node dist/index.mjs`.
+    await bundle("src/index.ts");
+    return;
+  }
+
+  if (mode === "vercel") {
+    // Default export of the Express app, no listen(). Vercel traces this file.
+    await bundle("src/vercel.ts");
+    return;
+  }
+
+  throw new Error(`Unknown build mode "${mode}". Use "server" or "vercel".`);
 }
 
 buildAll().catch((err) => {

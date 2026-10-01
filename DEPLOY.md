@@ -60,17 +60,41 @@ Set `VITE_SITE_URL` in the environment before `pnpm build` or `docker build`. It
 
 ## Vercel
 
-Vercel is not a fit for this app, and the previous `vercel.json` would not have hosted it.
+A preview deployment serves the Vite build from the CDN and runs the Express app as one Node function. The build writes `artifacts/api-server/dist/vercel.mjs` (the app, without `listen`). `api/index.mjs` is the only function. `/api/*` and `/blog` are rewritten to it. The wrapper keeps the browser path, so Express still renders the markdown blog and the API routes. Everything else is a static file, with a rewrite to `index.html` for client-side routes that were not prerendered.
 
-That file set `outputDirectory` to `artifacts/api-server` and only built the API package. Vercel would have treated a Node server package (source, `node_modules` metadata, and a compiled `dist`) as a static site. It would not run `node dist/index.mjs`, and the frontend build was not part of the command, so the copy into `public/` would fail or serve a stale tree.
+`vercel.json` already sets the install command, build command, and output directory. Match these in the project settings if the dashboard and the file ever disagree (the file wins on deploy):
 
-This app is a long-running Express process that:
+| Setting | Value |
+| --- | --- |
+| Root Directory | Repository root (`.`). Do not set this to `artifacts/creative-web-studio` or `artifacts/api-server`. The function, the markdown, and the Vite app are in different folders. |
+| Framework Preset | Other |
+| Install Command | `pnpm install --frozen-lockfile` |
+| Build Command | `pnpm --filter @workspace/creative-web-studio run build && pnpm --filter @workspace/api-server run build:vercel` |
+| Output Directory | `artifacts/creative-web-studio/dist/public` |
+| Node.js Version | 22.x |
 
-- serves the prerendered SPA and client-side routes from disk
-- renders `/blog` from markdown files next to the server
-- sends contact email and calls Make webhooks in the same process
-- creates Stripe Checkout sessions
+Leave `NODE_ENV` unset in the project environment. Vercel sets it for the build. Forcing `NODE_ENV=production` on install skips the devDependencies the Vite build needs.
 
-Putting that on Vercel means a serverless rewrite: export the app instead of calling `listen`, split static files from the function, and pack the blog posts into the function bundle. A `vercel.json` that only points at the Express package would not do that, so it was removed rather than left as a config that looks deployable and is not.
+The preview renders with no secrets. Checkout returns 503 until `STRIPE_SECRET_KEY1` is set. Contact still returns success; email and Make are skipped when their variables are empty.
 
-Use the Docker image, or any host that can run `node artifacts/api-server/dist/index.mjs` with `PORT` set (a VM, Fly.io, Render, Railway, and similar).
+Set these in Project Settings → Environment Variables for Preview (and Production when you promote it). All of them are optional for the pages to load.
+
+| Variable | Needed at | Notes |
+| --- | --- | --- |
+| `VITE_SITE_URL` | Build | Inlined into canonical and Open Graph tags. Use the public site origin. If it is missing, `%VITE_SITE_URL%` is left in `index.html`. |
+| `SITE_URL` | Runtime | Stripe return URLs and blog canonicals. Falls back to `VITE_SITE_URL`, then `http://localhost:$PORT`. |
+| `STRIPE_SECRET_KEY1` | Runtime | Optional. Unset means `POST /api/checkout` returns 503. |
+| `EMAIL_USER` | Runtime | Optional. Contact form email. |
+| `EMAIL_PASS` | Runtime | Optional. Gmail app password. |
+| `MAKE_WEBHOOK_URL` | Runtime | Optional. Contact-form Make webhook. |
+| `MAKE_WEBHOOK_PAYMENT_URL` | Runtime | Optional. Checkout Make webhook. |
+
+`PORT` is not used on Vercel. The Docker image still requires it.
+
+Blog markdown is included with the function via `functions.includeFiles` (`artifacts/api-server/blog-posts/**`). Do not move those files without updating `vercel.json`.
+
+Check the build locally (this does not deploy):
+
+```bash
+pnpm dlx vercel build
+```
