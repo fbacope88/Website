@@ -1,0 +1,1 @@
+- [GitHub REST sync](github-rest-sync.md) — verify tree and ancestry instead of commit IDs; stage large base64 blobs in temporary chunks when using connector APIs.
