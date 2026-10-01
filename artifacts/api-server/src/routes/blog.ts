@@ -4,6 +4,7 @@ import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import matter from "gray-matter";
 import { marked } from "marked";
+import { resolveSiteUrl } from "../lib/siteUrl.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -12,7 +13,7 @@ const router = Router();
 
 const POSTS_DIR = join(__dirname, "../blog-posts");
 
-const SITE_URL = "https://creativewebstudioexperts.replit.app";
+const SITE_URL = resolveSiteUrl();
 const BRAND = "Creative Web Studio Experts";
 
 interface PostMeta {

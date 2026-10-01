@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "export NODE_ENV=development && pnpm run build && pnpm run start",
-    "build": "node ./build.mjs && cp -r ../creative-web-studio/dist/public ./public",
+    "build": "node ./build.mjs && rm -rf public && cp -r ../creative-web-studio/dist/public public",
     "start": "node dist/index.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },

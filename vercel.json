@@ -1,9 +1,0 @@
-{
-  "version": 2,
-  "buildCommand": "cd artifacts/api-server && pnpm run build",
-  "outputDirectory": "artifacts/api-server",
-  "env": {
-    "PORT": "3000",
-    "VITE_SITE_URL": "https://creativewebstudioexpert.co.uk"
-  }
-}
