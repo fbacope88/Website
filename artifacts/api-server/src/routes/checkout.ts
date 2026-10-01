@@ -1,16 +1,20 @@
 import { Router } from "express";
 import Stripe from "stripe";
 import { logger } from "../lib/logger.js";
+import { resolveSiteUrl } from "../lib/siteUrl.js";
 
 const router = Router();
-
-const stripe = new Stripe(process.env["STRIPE_SECRET_KEY1"] ?? "");
 
 const PLANS = {
   basic: { name: "Basic Web Design Package", amount: 19900 },
   professional: { name: "Professional Web Design Package", amount: 39900 },
   ecommerce: { name: "E-Commerce Web Design Package", amount: 59900 },
 } as const;
+
+function readStripeKey(): string | undefined {
+  const key = process.env["STRIPE_SECRET_KEY1"]?.trim();
+  return key ? key : undefined;
+}
 
 async function notifyMakePayment(data: Record<string, unknown>) {
   const url = process.env["MAKE_WEBHOOK_PAYMENT_URL"];
@@ -27,6 +31,15 @@ async function notifyMakePayment(data: Record<string, unknown>) {
 }
 
 router.post("/checkout", async (req, res) => {
+  const stripeKey = readStripeKey();
+  if (!stripeKey) {
+    res.status(503).json({
+      error:
+        "Stripe is not configured. Set STRIPE_SECRET_KEY1 to enable checkout.",
+    });
+    return;
+  }
+
   const { plan, name, email } = req.body as { plan: string; name?: string; email?: string };
   const planData = PLANS[plan as keyof typeof PLANS];
 
@@ -35,11 +48,10 @@ router.post("/checkout", async (req, res) => {
     return;
   }
 
-  const rawDomains = process.env["REPLIT_DOMAINS"] ?? "";
-  const domain = rawDomains.split(",")[0]?.trim();
-  const baseUrl = domain ? `https://${domain}` : "http://localhost:80";
+  const baseUrl = resolveSiteUrl();
 
   try {
+    const stripe = new Stripe(stripeKey);
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       line_items: [

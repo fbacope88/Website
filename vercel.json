@@ -1,9 +1,18 @@
 {
-  "version": 2,
-  "buildCommand": "cd artifacts/api-server && pnpm run build",
-  "outputDirectory": "artifacts/api-server",
-  "env": {
-    "PORT": "3000",
-    "VITE_SITE_URL": "https://creativewebstudioexpert.co.uk"
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "pnpm install --frozen-lockfile",
+  "buildCommand": "pnpm --filter @workspace/creative-web-studio run build && pnpm --filter @workspace/api-server run build:vercel",
+  "outputDirectory": "artifacts/creative-web-studio/dist/public",
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/api?__path=/api/:path*" },
+    { "source": "/blog", "destination": "/api?__path=/blog" },
+    { "source": "/blog/:path*", "destination": "/api?__path=/blog/:path*" },
+    { "source": "/((?!api(?:/|$)|blog(?:/|$)).*)", "destination": "/index.html" }
+  ],
+  "functions": {
+    "api/index.mjs": {
+      "includeFiles": "artifacts/api-server/blog-posts/**"
+    }
   }
 }
