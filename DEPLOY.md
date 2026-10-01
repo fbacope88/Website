@@ -56,7 +56,7 @@ The image targets `linux/amd64` Debian. Do not switch the base image to Alpine: 
 
 If neither `SITE_URL` nor `VITE_SITE_URL` is set, Stripe return URLs and blog canonicals use `http://localhost:$PORT` (port `80` when `PORT` is unset).
 
-Set `VITE_SITE_URL` in the environment before `pnpm build` or `docker build`. It is inlined by Vite and does not change on an already built frontend if you only set it at process start.
+Set `VITE_SITE_URL` in the environment before `pnpm build` or `docker build`. It is inlined by Vite and does not change on an already built frontend if you only set it at process start. If it is missing at build time, Vite leaves the literal `%VITE_SITE_URL%` token in `artifacts/creative-web-studio/index.html` (the JSON-LD block). The page still renders; set the variable for a production build.
 
 ## Vercel
 
