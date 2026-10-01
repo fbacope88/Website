@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.creativeweb.studio/sitemap.xml
+Sitemap: https://creativewebstudioexpert.co.uk/sitemap.xml
